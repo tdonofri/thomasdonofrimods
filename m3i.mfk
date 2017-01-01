@@ -1,0 +1,106 @@
+SelectMission("m3");
+
+SetMissionResetPlayerInCar("m3_reset");
+SetDynaLoadData("l4z7.p3d;l4r6.p3d;l4r7.p3d;");
+InitLevelPlayerVehicle("hype_v","m3_nelsoncar","OTHER");
+
+SetPedGroup(0);
+
+SetForcedCar();
+
+AddStage(0);
+SetHUDIcon("lasergun");
+RESET_TO_HERE();
+	SetStageMessageIndex(13);
+	SetStageTime(30);
+	AddObjective("delivery", "neither");
+		AddCollectible("m3_supplies1","medkit");
+		AddCollectible("m3_supplies2","i_bldbag");
+		AddCollectible("m3_supplies3","map");
+		AddCollectible("m3_supplies4","lasergun");
+		RemoveNPC("nelson");
+	CloseObjective();
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondititon();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+	ShowStageComplete();
+CloseStage();
+
+AddStage(1);
+SetHUDIcon("mansion");
+SetStageMessageIndex(15);
+	AddObjective("goto");
+		SetDestination("m3_quimbyraid","triggersphere");
+		AddStageVehicle("cBlbart","m3_chasestart","NULL","Missions\level01\M7evade.con");		
+	CloseObjective();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	SetStageTime(95);
+	AddCondition("timeout");
+		//SetHitNRun();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+
+AddStage();
+SetHUDIcon("sports_v");
+SetStageMessageIndex(14);
+	AddObjective("losetail");
+	ActivateVehicle("cBlbart","NULL","chase");
+		SetObjTargetVehicle("cBlbart");
+		SetObjDistance(200);
+		AllowRockOut();
+	CloseObjective();
+	SetStageTime(60);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+	StageStartMusicEvent("M3_drama");
+	ShowStageComplete();
+CloseStage();
+
+AddStage();
+	SetHUDIcon("ralph");
+	SetStageMessageIndex(16);
+	AddObjective("goto");
+		SetDestination("m3_nelsonhouse","carsphere");
+	CloseObjective();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondititon();
+	SetStageTime(75);
+	AddCondition("timeout");
+		//SetHitNRun();
+CloseStage();
+
+AddStage("final"); // gets Lisa out of the Car and hides the car
+	AddObjective("timer");
+		RemoveDriver("nelson");
+		AddNPC("nelson", "m3_nelsontalk");
+		SetDurationTime(1);
+	CloseObjective();
+	SwapInDefaultCar();
+		SetSwapDefaultCarLocator("m3_nelsonhousecar");
+		SetSwapForcedCarLocator("m3_chasestart"); 
+		SetSwapPlayerLocator("m3_nelsonhousetype3");
+CloseStage();
+
+CloseMission();

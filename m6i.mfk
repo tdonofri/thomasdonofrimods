@@ -1,0 +1,129 @@
+SelectMission("m6");
+
+SetMissionResetPlayerInCar("m6_reset");
+SetDynaLoadData("l4r3.p3d;l4z2.p3d;l4r2.p3d;l4z3.p3d;");
+
+UsePedGroup(0);
+
+AddStage();
+RESET_TO_HERE();
+SetHUDIcon("retire");
+SetStageMessageIndex(06);
+AddObjective("goto");
+	SetDestination("m6_retire","carsphere");
+	AddNPC( "grandpa", "m5_grampa_sd" );
+CloseObjective();
+AddCondition("timeout");
+	//SetHitNRun();
+CloseCondition();
+AddCondition("outofvehicle");
+	SetCondTime( 10000 );
+CloseCondititon();
+AddCondition( "damage" );
+	SetCondMinHealth( 0.0 );
+	SetCondTargetVehicle( "current" );
+CloseCondition();
+SetStageTime(65);
+ShowStageComplete();
+StageStartMusicEvent("M6_start");
+CloseStage();
+
+AddStage();
+	SetHUDIcon("grampa");
+	SetStageMessageIndex(07);
+	AddObjective("talkto");
+		AddNPC( "grandpa", "m5_grampa_sd" );
+		SetTalkToTarget("grandpa", 0, 0);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("lisa");
+SetStageMessageIndex(08);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+	
+AddStage();
+SetHUDIcon("grampa");
+SetStageMessageIndex(09);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();	
+
+AddStage();
+SetHUDIcon("lisa");
+SetStageMessageIndex(10);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
+SetStageMessageIndex(11);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("tuxedo");
+SetStageMessageIndex(13);
+	AddObjective("goto");
+		SetDestination("m6_tux","tux");
+	CloseObjective();
+CloseStage();
+
+AddStage();
+	SetStageMessageIndex(12);
+	AddObjective("getin");
+		SetObjTargetVehicle("current");
+	CloseObjective();
+CloseStage();
+
+AddStage("final");
+StageStartMusicEvent("M6_drama");
+NoTrafficForStage();               
+StartCountdown("count");
+	AddToCountdownSequence( "3", 1000 ); // duration time in milliseconds
+	AddToCountdownSequence( "2", 800 ); // duration time in milliseconds
+	AddToCountdownSequence( "1", 800 ); // duration time in milliseconds
+	AddToCountdownSequence( "GO", 400 ); // duration time in milliseconds
+
+//SetStageAIRaceCatchupParams( 
+//	STAGEVEHICLENAME,
+//      ALONGROADDISTFROMPLAYER_TO_APPLYMAXCATCHUP, // default = 80
+//      FRACTIONPLAYERSPEED_MINCATCHUP,   // default = 0.5
+//      FRACTIONPLAYERSPEED_NOCATCHUP,    // default = 1.1
+//      FRACTIONPLAYERSPEED_MAXCATCHUP )  // default = 1.7
+//SetStageAIRaceCatchupParams("gramR_v", 80, 0.5, 1.1, 1.7); 
+	SetStageMessageIndex(05);
+	SetHUDIcon( "mansion" );
+	AddStageVehicle("gramR_v","m6_gramp_v","race","Missions\level04\M4race.con", "grandpa");
+	SetStageAIRaceCatchupParams("gramR_v", 80, 0.9, 1.5, 2.3); 
+	SetVehicleAIParams( "gramR_v", 50, 51 );   // no shortcuts
+	AddStageWaypoint( "m6_raceend" );
+	AddObjective( "race" );
+	DisableHitAndRun();
+//		SetHitAndRunMeter(100);
+		AddCollectible("m6_raceend","finish_line");
+	CloseObjective();
+	AddCondition("race");
+		SetCondTargetVehicle("gramR_v");
+	CloseCondition();
+	AddCondition("position");
+		SetConditionPosition(1);
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current");
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+CloseStage();
+
+CloseMission();

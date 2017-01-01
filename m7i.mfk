@@ -1,0 +1,133 @@
+SelectMission("m7");
+
+SetMissionResetPlayerInCar("m6_reset");
+SetDynaLoadData("l4r3.p3d;l4z2.p3d;l4r2.p3d;l4z3.p3d;");
+
+UsePedGroup(1);
+
+AddStage();
+RESET_TO_HERE();
+	SetHUDIcon("lasergun");
+	SetStageMessageIndex(06);
+	SetStageTime(90);
+	AddObjective("delivery", "neither");
+		AddCollectible("m7_colastand_1","lasrstnd");
+		AddCollectible("m7_colastand_2","lasrstnd");
+		AddCollectible("m7_colastand_3","lasrstnd");
+		AddCollectible("m7_colastand_4","lasrstnd");
+		AddCollectible("m7_colastand_5","lasrstnd");
+		AddCollectible("m7_colastand_6","lasrstnd");
+		AddCollectible("m7_colastand_7","lasrstnd");
+		AddCollectible("m7_colastand_8","lasrstnd");
+	CloseObjective();
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondititon();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+
+AddStage(); // Oh Oh There's Wiggum Again!
+	SetHUDIcon("bartroom");
+	SetStageMessageIndex(07);
+	SetStageTime(80);
+	AddObjective("goto");
+		SetDestination("m7_skool","carsphere");
+		AddStageVehicle("wiggu_v","m7_wiggum_start","NULL","Missions\level01\M7evade.con","wiggum");
+	CloseObjective();
+		AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondititon();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+
+AddStage(); // IT'S WIGGUM TIME!
+SetHUDIcon("wiggu_v");
+SetStageMessageIndex(08);
+	AddObjective("losetail");
+	ActivateVehicle("wiggu_v","NULL","chase");
+		SetObjTargetVehicle("wiggu_v");
+		SetObjDistance(165);
+		AllowRockOut();
+	CloseObjective();
+	SetStageTime(60);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	StageStartMusicEvent("M7_drama");
+	ShowStageComplete();
+CloseStage();
+
+AddStage();
+	SetHUDIcon("bartroom");
+	SetStageMessageIndex(07);
+	SetStageTime(45);
+	AddObjective("goto");
+		SetDestination("m6_simpsonhouse","carsphere");
+	CloseObjective();
+		AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondititon();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+
+AddStage();
+SetStageMessageIndex(09);
+SetHUDIcon("bartroom");
+	AddObjective("goto");
+		SetDestination("outside_bartroom");
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetStageMessageIndex(10);
+SetHUDIcon("bart");
+	AddObjective("talkto");
+		AddNPC("bart", "m6_bart");
+		AddNPC("grandpa","m6_marge");
+		SetTalkToTarget("bart", 0, 0);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("bart");
+	SetStageMessageIndex(11);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
+	SetStageMessageIndex(13);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage("final");
+SetHUDIcon("grampa");
+	SetStageMessageIndex(14);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+CloseMission();

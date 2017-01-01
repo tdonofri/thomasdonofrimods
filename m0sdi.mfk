@@ -1,0 +1,79 @@
+SelectMission("m0sd");
+
+SetMissionResetPlayerOutCar("L4_marge_sd","level4_carstart");
+SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;l4i02.p3d@", "SimpsonsHouse");
+
+UsePedGroup(0);
+
+AddStage(0);
+    SetStageMessageIndex(250);
+    AddObjective("gooutside");
+        SetDestination("outside_Simpsons_house_locator");
+    CloseObjective();
+CloseStage();
+
+AddStage(2);
+RESET_TO_HERE();
+	SetStageMessageIndex(12);
+	AddObjective("getin");
+		SetObjTargetVehicle("current");
+	CloseObjective();
+CloseStage();
+
+AddStage(3);
+	SetHUDIcon("lardlads");
+	SetStageMissionIndex(06);
+	AddObjective("goto");
+		SetDestination( "m1_lardlads", "carsphere" );
+	CloseObjective();
+ CloseStage();
+ 
+ AddStage(4);
+	SetHUDIcon("bart");
+	SetStageMessageIndex(01);
+	AddObjective( "talkto" );
+		AddNPC( "bart", "m1_wiggum_place" );
+		AddObjectiveNPCWaypoint( "bart", "m1_wiggum_place" );
+		SetTalkToTarget("bart", 0, 0);
+	CloseObjective();
+CloseStage();
+
+AddStage(5);
+	SetHUDIcon("lisa");
+	SetStageMessageIndex(02);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(6);
+	SetHUDIcon("bart");
+	SetStageMessageIndex(03);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(7);
+	SetHUDIcon("lisa");
+	SetStageMessageIndex(04);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+//AddStage(8);
+	//AddObjective("fmv");
+		//SetFMVInfo("fmv2.rmv");
+	//CloseObjective();
+//CloseStage();
+
+AddStage(9);
+	SetStageMessageIndex(12);
+	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_00.p3d" );
+	AddObjective("timer");
+		SetDurationTime(1);
+	CloseObjective();
+CloseStage();
+
+CloseMission();

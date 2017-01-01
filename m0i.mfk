@@ -1,0 +1,56 @@
+SelectMission("m0");
+
+SetMissionResetPlayerInCar("m0_reset");
+SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;");
+
+UsePedGroup(6);
+
+AddStage(0);
+RESET_TO_HERE();
+    SetStageMessageIndex(05);
+	AddObjective("goto");
+		AddStageVehicle("cArmor","m0_elbartovan_start","NULL","Destroy\MedDest.con");
+		SetDestination("m7_kwik", "carsphere");
+	CloseObjective();
+CloseStage();
+
+AddStage(1);
+	SetHUDIcon( "arm_v" );
+    SetStageMessageIndex(07);
+	ActivateVehicle("cArmor","NULL","target");
+	SetVehicleAIParams( "cArmor", -10, -9 );
+	AddStageWaypoint("m0_elbartovan_1");
+	AddStageWaypoint("m0_elbartovan_2");
+	AddStageWaypoint("m0_elbartovan_3");
+	AddStageWaypoint("m0_elbartovan_4");
+	AddStageWaypoint("m0_elbartovan_5");
+	AddStageWaypoint("m0_elbartovan_6");
+	AddStageWaypoint("m0_elbartovan_7");
+	AddStageWaypoint("m0_elbartovan_9");	
+	AddObjective("destroy");
+		SetObjTargetVehicle("cArmor");
+	CloseObjective();
+	SetStageTime(150);
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondititon();
+CloseStage();
+
+AddStage(0);
+	SetStageMessageIndex(263);
+	SetHUDIcon("bartroom");
+	AddObjective("interior");
+		AddNPC("bart", "m6_bart");
+		SetDestination("bartroom"); // use name of interiors entry locator
+	CloseObjective();
+CloseStage();
+
+AddStage("final");
+	SetStageMessageIndex(08);
+	SetHUDIcon("bartroom");
+	AddObjective("goto");
+		SetDestination("m6_gated_start","triggersphere");
+	CloseObjective();
+CloseStage();
+
+CloseMission();

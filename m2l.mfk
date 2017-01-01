@@ -1,0 +1,13 @@
+LoadDisposableCar("art\cars\skinn_v.p3d","skinn_v","OTHER"); 
+
+LoadP3DFile( "art\missions\level01\m2.p3d" );
+LoadP3DFile( "art\missions\level01\record.p3d" );
+LoadP3DFile( "art\missions\level01\kmeal.p3d" );
+LoadP3DFile( "art\missions\level01\ketchup.p3d" );
+
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\kwike.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\record.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\svt.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\skinner.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\kbmeal.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\ketchup.p3d" );

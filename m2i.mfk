@@ -1,0 +1,117 @@
+SelectMission("m2");
+
+SetMissionResetPlayerInCar("m2_reset");
+SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;l4i07.p3d");
+InitLevelPlayerVehicle("skinn_v","m2_skinner_car","OTHER");
+
+UsePedGroup(0);
+
+SetForcedCar();
+
+AddStage(0);
+	SetHUDIcon("kwike");
+	SetStageMessageIndex(07);
+	AddObjective("goto");
+		SetDestination("m7_kwik","carsphere");
+		RemoveNPC("skinner");
+	CloseObjective();
+	SetStageTime(45);
+	AddCondition("timeout");
+	CloseCondititon();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondititon();
+CloseStage();
+
+AddStage(1);
+	SetHUDIcon("kwike");
+	SetStageMessageIndex(08);
+	AddObjective("interior");
+		AddNPC("apu", "m7_apu_sd");
+		SetDestination("KwikEMart", "kwik_mission_doorstar");
+	CloseObjective();
+CloseStage();
+
+AddStage(2);
+	SetHUDIcon("record");
+	SetStageMessageIndex(14);
+	AddObjective("goto");
+		AddNPC("apu", "m7_apu_sd");
+		SetDestination("m2_cola","record");
+	CloseObjective();
+CloseStage();
+
+AddStage(3);
+	SetHUDIcon("skinner");
+	SetStageMessageIndex(09);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(4);
+	SetHUDIcon("svt");
+	SetStageMessageIndex(10);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(5);
+	SetHUDIcon("skinner");
+	SetStageMessageIndex(11);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(6);
+	SetHUDIcon("svt");
+	SetStageMessageIndex(17);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(7);
+	SetStageMessageIndex(12);
+	AddObjective("getin");
+		SetObjTargetVehicle("current");
+	CloseObjective();
+CloseStage();
+
+AddStage(0);
+	SetHUDIcon("kbmeal");
+	SetStageMessageIndex(19);
+	AddObjective("goto");
+		SetDestination("m2_kburger", "kmeal");
+	CloseObjective();
+	SetStageTime(45);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+CloseStage();
+
+AddStage(4);
+	SetHUDIcon("skinner");
+	SetStageMessageIndex(20);
+	AddObjective("goto");
+		SetDestination("m2_dropoff", "ketchup");
+	CloseObjective();
+	SetStageTime(75);
+	SwapInDefaultCar();
+		SetSwapDefaultCarLocator("m2_marge_car2");
+		SetSwapForcedCarLocator("m3_starting_point"); 
+		SetSwapPlayerLocator("m2_marge_2");
+CloseStage();
+
+
+AddStage("final"); // gets Lisa out of the Car and hides the car
+	AddObjective("timer");
+		RemoveDriver("skinner");
+		AddNPC("skinner", "m3_cletus_walk1");
+		SetDurationTime(1);
+	CloseObjective();
+CloseStage();
+
+CloseMission();

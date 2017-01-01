@@ -1,0 +1,82 @@
+SelectMission("m2sd");
+
+SetMissionResetPlayerInCar("level4_carstart");
+SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;");
+
+UsePedGroup(0);
+
+//AddStage(0);
+	//SetStageMessageIndex(12);
+	//AddObjective("getin");
+		//SetObjTargetVehicle("current");
+	//CloseObjective();
+//CloseStage();
+
+AddStage(2);
+	SetHUDIcon("kburger");
+	SetStageMessageIndex(01);
+	AddObjective("goto");
+		SetDestination("m2_krustyburg_1","carsphere");
+		AddNPC( "skinner", "m2_skinner_fatlol_1" );
+		AddStageVehicle("skinn_v","m2_skinner_car","NULL","EasyRace\AI_5th.con");
+	CloseObjective();
+CloseStage();
+
+AddStage(3);
+	SetHUDIcon("skinner");
+	SetStageMessageIndex(21);
+	AddObjective("talkto");
+		AddNPC( "skinner", "m2_skinner_fatlol_1" );
+		SetTalkToTarget("skinner", 0, 0);
+	CloseObjective();
+CloseStage();
+
+AddStage(3);
+	SetHUDIcon("lisa");
+	SetStageMessageIndex(02);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(4);
+	SetHUDIcon("skinner");
+	SetStageMessageIndex(03);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(5);
+	SetHUDIcon("lisa");
+	SetStageMessageIndex(04);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(5);
+	SetHUDIcon("skinner");
+	SetStageMessageIndex(05);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(5);
+	SetHUDIcon("skinner");
+	SetStageMessageIndex(06);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage(6);
+	SetStageMessageIndex(12);
+	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_02.p3d" );
+	AddObjective("timer");
+		SetDurationTime(1);
+	CloseObjective();
+CloseStage();
+
+CloseMission();

@@ -1,0 +1,48 @@
+SelectMission("m4sd");
+
+SetMissionResetPlayerOutCar("m3_reset","m3_nelsonhousetype3");
+SetDynaLoadData("l4z7.p3d;l4r6.p3d;l4r7.p3d;");
+
+UsePedGroup(6);
+
+AddStage();
+	SetStageMessageIndex(14);
+	AddObjective("goto");
+		SetDestination("m3_nelsonhouse","triggersphere");
+		AddNPC( "nelson", "m3_nelsontalk" );
+		AddStageVehicle("hype_v","m3_nelsoncar","NULL","EasyRace\AI_5th.con");
+	CloseObjective();
+CloseStage();
+
+AddStage();
+	SetStageMessageIndex(01);
+	AddObjective("talkto");
+		AddNPC( "nelson", "m3_nelsontalk" );
+		SetTalkToTarget("nelson", 0, 0);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+	SetHUDIcon("lisa");
+	SetStageMessageIndex(02);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+	SetHUDIcon("nelson");
+	SetStageMessageIndex(03);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetPresentationBitmap( "art/frontend/dynaload/images/mis01_04.p3d" );
+	AddObjective("timer");
+		SetDurationTime(1);
+	CloseObjective();
+CloseStage();
+
+CloseMission();
