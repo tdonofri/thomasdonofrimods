@@ -1,146 +1,68 @@
 SelectMission("m1");
 
-SetMissionResetPlayerInCar("m1_retire_carstart");
-SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;l4z1.p3d;");
-
+SetMissionResetPlayerInCar("m1_race_loc");
+SetDynaLoadData("l6z1.p3d;l6r1.p3d;l6r5.p3d;l6r5_dam.p3d;");
 UsePedGroup(0);
 
-AddStage(0);
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
-	CloseObjective();
-CloseStage();
-
-AddStage(0);
-RESET_TO_HERE();
-SetHUDIcon("playgrou");
-SetStageMessageIndex(08);
-	AddObjective("goto");
-		SetDestination("m1_school","carsphere");
-		AddStageVehicle("scorp_v","m1_losetail_carstart","NULL","Missions\level01\M7evade.con","kearney");
-	CloseObjective();
-	SetStageTime(35);
-	AddCondition("timeout");
-		//SetHitNRun();
-	CloseCondition();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(23);
-SetHUDIcon("apu_v");
-	AddObjective("losetail");
-	ActivateVehicle("scorp_v","NULL","chase");
-		SetObjTargetVehicle("scorp_v");
-		SetObjDistance(175);
-	CloseObjective();
-	SetStageTime(60);
-	AddCondition("timeout");
-		//SetHitNRun();
-	CloseCondition();
-	StageStartMusicEvent("M1_drama");
-	ShowStageComplete();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(21);
-SetHUDIcon("lenny");
-	AddObjective("goto");
-		SetDestination("m1_dropoff","carsphere");
-	CloseObjective();
-	SetStageTime(95);
-	AddCondition("timeout");
-		//SetHitNRun();
-	CloseCondition();
-CloseStage();
-
-AddStage(3); // These stages are left over, TBD what will happen!
-	SetStageMessageIndex(22);
-	SetHUDIcon("bartroom");
-	AddObjective("interior");
-		AddNPC("bart", "m6_bart");
-		SetDestination("bartroom"); // use name of interiors entry locator
-	CloseObjective();
-CloseStage();
-
- AddStage(4);
-	SetHUDIcon("bart");
-	SetStageMessageIndex(11);
-	AddObjective( "talkto" );
-		AddNPC( "bart", "m6_bart" );
-		SetTalkToTarget("bart", 0, 0);
-	CloseObjective();
-CloseStage();
-
-AddStage(5);
-SetHUDIcon("lisa");
-SetStageMessageIndex(13);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(6);
-SetHUDIcon("bart");
-SetStageMessageIndex(14);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(7);
-SetHUDIcon("lisa");
-SetStageMessageIndex(15);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-	
-AddStage(8);
-SetHUDIcon("bart");
-SetStageMessageIndex(16);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(9);
-SetHUDIcon("bart");
-SetStageMessageIndex(17);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(10);
-SetHUDIcon("bart");
-SetStageMessageIndex(18);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(11);
-SetHUDIcon("bart");
-SetStageMessageIndex(19);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();	
-
-AddStage(12);
-SetHUDIcon("lisa");
-SetStageMessageIndex(20);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
 AddStage("final");
-SetHUDIcon("simpsons");
-SetStageMessageIndex(24);
-	AddObjective("goto");
-		SetDestination("m6_simpsonhouse","triggersphere");
+RESET_TO_HERE();
+NoTrafficForStage();
+PlacePlayerCar("current", "m1_race_loc");
+PutMFPlayerInCar( );  // This makes the play auto reset into their car for this stage.     
+	SetStageMessageIndex(06);
+	SetHUDIcon( "krustylu" );
+	StartCountdown(count);
+	AddToCountdownSequence( "3", 1000 ); // duration time in milliseconds
+	AddToCountdownSequence( "2", 1000 ); // duration time in milliseconds
+	AddToCountdownSequence( "1", 1000 ); // duration time in milliseconds
+	AddToCountdownSequence( "GO", 400 ); // duration time in milliseconds
+	AddStageVehicle("SUVA","m1_sr1","race","Missions\level06\sr3_1st.con" );
+	AddStageVehicle("cCellD","m1_sr2","race","Missions\level06\sr3_2nd.con" );
+	AddStageVehicle("cPolice","m1_sr3","race","Missions\level06\sr3_3rd.con" );
+	SetStageAIRaceCatchupParams("cCellD", 80, 0.9, 1.5, 2.3); 
+	SetStageAIRaceCatchupParams("cPolice", 80, 0.8, 1.4, 2.3); 
+	SetStageAIRaceCatchupParams("SUVA", 80, 0.9, 1.3, 2.5); 
+	SetVehicleAIParams( "SUVA", 50, 51 );   // no shortcuts
+	SetVehicleAIParams( "cCellD", 45, 51 );   // no shortcuts
+	SetVehicleAIParams( "cPolice", 50, 46 );   // no shortcuts
+	AddStageWaypoint( "m1_waypoint_0");
+		AddStageWaypoint( "m1_waypoint_1");
+		AddStageWaypoint( "m1_waypoint_2");
+		AddStageWaypoint( "m1_waypoint_3");
+		AddStageWaypoint( "m1_waypoint_4");
+		AddStageWaypoint( "m1_waypoint_5");
+		AddStageWaypoint( "m1_waypoint_6");
+		AddStageWaypoint( "m1_waypoint_7");
+		AddStageWaypoint( "m1_waypoint_8" );
+	AddObjective( "race" );
+		DisableHitAndRun();
+//		SetHitAndRunMeter(100);
+		AddCollectible("m1_waypoint_1","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m1_waypoint_2","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m1_waypoint_3","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m1_waypoint_4","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m1_waypoint_5","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m1_waypoint_6","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m1_waypoint_7","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m1_waypoint_8","finish_line");
 	CloseObjective();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	AddCondition("position");
+		SetConditionPosition(1);
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
 CloseStage();
 
 CloseMission();

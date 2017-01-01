@@ -1,45 +1,31 @@
 SelectMission("m5");
 
-SetMissionResetPlayerInCar("m5_reset");
-SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;l4z1.p3d;");
+SetMissionResetPlayerInCar("m5_carstart");
+SetDynaLoadData("l6z1.p3d;l6r1.p3d;l6r5.p3d;l6r5_dam.p3d;");
+UsePedGroup(0);
 
-UsePedGroup(1);
-
-AddStage("final");
-NoTrafficForStage();
-PlacePlayerCar("current", "m5_reset");
-PutMFPlayerInCar( );  // This makes the play auto reset into their car for this stage.                
-StartCountdown("count");
-	AddToCountdownSequence( "3", 1000 ); // duration time in milliseconds
-	AddToCountdownSequence( "2", 800 ); // duration time in milliseconds
-	AddToCountdownSequence( "1", 800 ); // duration time in milliseconds
-	AddToCountdownSequence( "GO", 400 ); // duration time in milliseconds
-
-//SetStageAIRaceCatchupParams( 
-//	STAGEVEHICLENAME,
-//      ALONGROADDISTFROMPLAYER_TO_APPLYMAXCATCHUP, // default = 80
-//      FRACTIONPLAYERSPEED_MINCATCHUP,   // default = 0.5
-//      FRACTIONPLAYERSPEED_NOCATCHUP,    // default = 1.1
-//      FRACTIONPLAYERSPEED_MAXCATCHUP )  // default = 1.7
-//SetStageAIRaceCatchupParams("hype_v", 80, 0.5, 1.1, 1.7); 
-	
-	RESET_TO_HERE();
-	SetStageMessageIndex(05);
-	SetHUDIcon( "mansion" );
-	AddStageVehicle("hype_v","m5_nelsoncar","race","Missions\level04\M4race.con", "nelson");
-	SetStageAIRaceCatchupParams("hype_v", 80, 0.9, 1.5, 2.3); 
-	SetVehicleAIParams( "hype_v", 50, 51 );   // no shortcuts
-	AddStageWaypoint( "m5_montys_estate" );
-	AddObjective( "race" );
-	DisableHitAndRun();
-//		SetHitAndRunMeter(100);
-		AddCollectible("m5_montys_estate","finish_line");
+AddStage(); // Oh O.. Oh Wait, it's not Wiggum
+	SetStageMessageIndex(18);
+	SetHUDIcon("wiggu_v");
+	AddStageVehicle("cPolice","m5_jailcar","target","Missions\level02\M7dest.con");
+	SetVehicleAIParams( "cPolice", -10, -9 );
+	AddStageWaypoint("m5_raceloc_1");
+		AddStageWaypoint("m5_raceloc_2");
+		AddStageWaypoint("m5_raceloc_3");
+		AddStageWaypoint("m5_raceloc_4");
+		AddStageWaypoint("m5_raceloc_5");
+		AddStageWaypoint("m5_raceloc_6");
+		AddStageWaypoint("m5_raceloc_7");
+		AddStageWaypoint("m5_raceloc_8");
+		AddStageWaypoint("m5_raceloc_9");
+		AddStageWaypoint("m5_raceloc_10");
+	AddObjective("destroy");
+		SetObjTargetVehicle("cPolice");
+		AllowRockOut();
 	CloseObjective();
-	AddCondition("race");
-		SetCondTargetVehicle("hype_v");
-	CloseCondition();
-	AddCondition("position");
-		SetConditionPosition(1);
+	SetStageTime(67);
+	AddCondition("timeout");
+		//SetHitNRun();
 	CloseCondition();
 	AddCondition( "damage" );
 		SetCondMinHealth( 0.0 );
@@ -48,6 +34,85 @@ StartCountdown("count");
 	AddCondition("outofvehicle");
 		SetCondTime( 10000 );
 	CloseCondition();
+	ShowStageComplete();
+CloseStage();
+
+AddStage();  // Oh Oh There's Wiggum Again!
+	SetStageMessageIndex(13);
+	SetHUDIcon("taffy");
+	AddObjective("goto");
+		SetDestination("m5_taffyshop","carsphere");
+		AddStageVehicle("wiggu_v","m5_bart_start","NULL","Missions\level01\M7evade.con","wiggum");
+		AddNPC("snake","m5_skinner_sd");
+	CloseObjective();
+	SetStageTime(120);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	ShowStageComplete();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current");
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+CloseStage();
+
+AddStage(); // IT'S WIGGUM TIME!
+	SetStageMessageIndex(11);
+	SetHUDIcon("wiggu_v");
+	AddObjective("losetail");
+		ActivateVehicle("wiggu_v","NULL","chase");
+		SetObjTargetVehicle("wiggu_v");
+		SetObjDistance(165);
+		AllowRockOut();
+	CloseObjective();
+	SetStageTime(60);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current");
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	ShowStageComplete();
+CloseStage();
+
+AddStage();
+	SetStageMessageIndex(14);
+	SetHUDIcon("sjail");
+	AddObjective("talkto");
+		AddNPC("snake","m5_skinner_sd");
+		SetTalkToTarget("snake", 0, 0);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
+	SetStageMessageIndex(15);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
+	SetStageMessageIndex(16);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage("final");
+SetHUDIcon("sjail");
+	SetStageMessageIndex(17);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
 CloseStage();
 
 CloseMission();

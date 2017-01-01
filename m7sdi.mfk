@@ -1,57 +1,38 @@
 SelectMission("m7sd");
 
-SetMissionResetPlayerInCar("m6_reset");
-SetDynaLoadData("l4r3.p3d;l4z2.p3d;l4r2.p3d;l4z3.p3d;");
+SetMissionResetPlayerOutCar("m7_bart_start","m7_carstart");
+SetDynaLoadData("l6z1.p3d;l6r1.p3d;l6r5.p3d;l6r5_dam.p3d;");
 
-UsePedGroup(1);
+UsePedGroup(0);
 
 AddStage(0);
-	SetStageMessageIndex(01);
-	SetHUDIcon("nelson");
+	SetMaxTraffic(5);
+	SetStageMessageIndex(180);
+	SetHUDIcon("kburger");
+	AddObjective( "goto" );
+		AddNPC("snake", "m7_homer_sd");
+		AddStageVehicle("snake_v","m7_homer_carstart","NULL","HardRace\AI_2nd.con");
+		SetDestination( "m7_krustyburger", "carsphere");
+		SetCollectibleEffect("wrench_collect");
+	CloseObjective();
+CloseStage();
+
+AddStage(5);
+	RESET_TO_HERE();
+	SetStageMessageIndex(03);
+	SetHUDIcon("sjail");
 	AddObjective("talkto");
-		AddNPC("nelson", "m6_nelsonplace");
-		AddNPC("grandpa", "m7_grampplace" );
-		SetTalkToTarget("nelson", 0, -0.5);
+		AddNPC("snake", "m7_homer_sd");
+		SetTalkToTarget("snake", 0, 0);
 	CloseObjective();
 CloseStage();
 
 AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(02);
+	SetHUDIcon("grampa");
+	SetStageMessageIndex(01);
+	SetPresentationBitmap( "art/frontend/dynaload/images/mis02_07.p3d" );
 	AddObjective("timer");
 		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(03);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("grampa");
-SetStageMessageIndex(04);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("nelson");
-SetStageMessageIndex(05);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(12);
-SetPresentationBitmap( "art/frontend/dynaload/images/mis01_07.p3d" );
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
 	CloseObjective();
 CloseStage();
 

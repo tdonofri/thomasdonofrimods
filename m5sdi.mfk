@@ -1,36 +1,63 @@
 SelectMission("m5sd");
 
-SetMissionResetPlayerOutCar("m1_lis_warp","level4_carstart");
-SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;l4i07.p3d@", "bartroom");
+SetMissionResetPlayerOutCar("m5_outsideob","m4_carstart");
+SetDynaLoadData("l6z5.p3d;l6r4.p3d;l6r5.p3d;l6r5_dam.p3d;");
 
+UsePedGroup(5);
+	
 AddStage();
-SetStageMessageIndex(01);
-SetHUDIcon("bart");
-	AddObjective("talkto");
-		AddNPC("bart", "m6_bart");
-		AddNPC("nelson","m6_marge");
-		SetTalkToTarget("bart", 0, 0);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("bart");
-	SetStageMessageIndex(02);
+	RESET_TO_HERE();
 	AddObjective("timer");
-		SetDurationTime(3);
+		AddStageCharacter("grandpa", "m5_outsideob", "", "gramp_v", "m4_carstart");
+		SetDurationTime(1);
+		SwapInDefaultCar();
+		SetSwapDefaultCarLocator("m4_carstart");
+		SetSwapPlayerLocator("m5_outsideob");
+    CloseObjective();
+CloseStage();
+
+AddStage();
+SetStageMessageIndex(12);
+	AddObjective("getin");
+		SetObjTargetVehicle("current");
 	CloseObjective();
 CloseStage();
 
 AddStage();
-SetHUDIcon("nelson");
+	SetStageMessageIndex(01);
+	SetHUDIcon("sjail");
+	AddObjective("goto");
+		SetDestination("m4_snake_loc","carsphere");
+		AddNPC("snake","bm1_snake_sd");
+	CloseObjective();
+CloseStage();
+
+AddStage("locked","car","pPolice");
 	SetStageMessageIndex(03);
-	AddObjective("timer");
-		SetDurationTime(3);
+	SetHUDIcon("sjail");
+	AddObjective("talkto");
+		AddNPC("snake","bm1_snake_sd");
+		SetTalkToTarget("snake", 0, 0);
 	CloseObjective();
 CloseStage();
 
 AddStage();
-SetHUDIcon("lisa");
+	SetStageMessageIndex(09);
+	AddObjective("buycar", "pPolice");
+	CloseObjective();
+CloseStage();
+
+AddStage();
+	SetStageMessageIndex(03);
+	SetHUDIcon("sjail");
+	AddObjective("talkto");
+		AddNPC("snake","bm1_snake_sd");
+		SetTalkToTarget("snake", 0, 0);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
 	SetStageMessageIndex(04);
 	AddObjective("timer");
 		SetDurationTime(3);
@@ -38,8 +65,48 @@ SetHUDIcon("lisa");
 CloseStage();
 
 AddStage();
-	SetStageMessageIndex(12);
-	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_05.p3d" );
+SetHUDIcon("sjail");
+	SetStageMessageIndex(05);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("sjail");
+	SetStageMessageIndex(06);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("sjail");
+	SetStageMessageIndex(07);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
+	SetStageMessageIndex(08);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
+	SetStageMessageIndex(10);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetStageMessageIndex(12);
+	SetPresentationBitmap( "art/frontend/dynaload/images/mis02_05.p3d" );
 	AddObjective("getin");
 		SetObjTargetVehicle("current");
 	CloseObjective();

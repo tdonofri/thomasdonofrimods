@@ -1,89 +1,59 @@
 SelectMission("m1sd");
 
-SetMissionResetPlayerOutCar("m1_lis_warp","level4_carstart");
-SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;l4i07.p3d@", "bartroom");
+SetMissionResetPlayerOutCar("level6_bart_start","level6_carstart");
+SetDynaLoadData("l6z1.p3d;l6r1.p3d;l6r5.p3d;l6r5_dam.p3d;");
 
 UsePedGroup(0);
 
-AddStage(1);
-	SetStageMessageIndex(12);
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
-	CloseObjective();
-CloseStage();
-
-AddStage(2);
-	SetHUDIcon("retire");
+AddStage(5);
+	SetMaxTraffic(3);
 	SetStageMessageIndex(01);
-	AddObjective("goto");
-		SetDestination("m1_retire", "carsphere");
-		AddNPC( "milhouse", "m5_grampa_sd" );
+	SetHUDIcon("apu");
+	AddObjective("talkto");
+		AddNPC("apu", "m1_apu_sd");
+		SetTalkToTarget("apu", 0, 0);
 	CloseObjective();
 CloseStage();
 
-AddStage(2);
-	SetHUDIcon("milhouse");
+AddStage();
+SetHUDIcon("grampa");
 	SetStageMessageIndex(02);
-	AddObjective( "talkto" );
-		AddNPC( "milhouse", "m5_grampa_sd" );
-		SetTalkToTarget("milhouse", 0, 0);
+	AddObjective("timer");
+		SetDurationTime(3);
 	CloseObjective();
 CloseStage();
 
-AddStage(3);
-	SetHUDIcon("lisa");
+AddStage();
+SetHUDIcon("apu");
 	SetStageMessageIndex(03);
 	AddObjective("timer");
 		SetDurationTime(3);
 	CloseObjective();
 CloseStage();
 
-AddStage(4);
-	SetHUDIcon("milhouse");
+
+AddStage();
+SetHUDIcon("grampa");
 	SetStageMessageIndex(04);
 	AddObjective("timer");
 		SetDurationTime(3);
 	CloseObjective();
 CloseStage();
 
-AddStage(5);
-	SetHUDIcon("lisa");
+AddStage();
+SetHUDIcon("apu");
 	SetStageMessageIndex(05);
 	AddObjective("timer");
 		SetDurationTime(3);
 	CloseObjective();
 CloseStage();
 
-AddStage(6);
-	SetHUDIcon("milhouse");
-	SetStageMessageIndex(06);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(7);
-	SetHUDIcon("homer");
-	SetStageMessageIndex(07);
-	AddObjective("timer");
-		SetDurationTime(3);
-		AddNPC( "milhouse", "m5_grampa_sd" );
-		StayInBlack();
-	CloseObjective();
-CloseStage();
-
-//AddStage(8);
-	//AddObjective("fmv");
-		//SetFMVInfo("fmv3.rmv");
-	//CloseObjective();
-//CloseStage();
-
-AddStage(9);
+AddStage();
+SetHUDIcon("smith_v");
 	SetStageMessageIndex(12);
-	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_01.p3d" );
-	AddObjective("timer");
-		AddNPC( "milhouse", "m5_grampa_sd" );
-		SetDurationTime(1);
+	SetPresentationBitmap( "art/frontend/dynaload/images/mis02_01.p3d" );
+	AddObjective("getin");
+		SetObjTargetVehicle("current");
 	CloseObjective();
 CloseStage();
 

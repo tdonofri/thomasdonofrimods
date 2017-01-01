@@ -1,105 +1,57 @@
 SelectMission("m4");
 
-SetMissionResetPlayerInCar("m3_reset");
-SetDynaLoadData("l4z7.p3d;l4r6.p3d;l4r7.p3d;");
-InitLevelPlayerVehicle("hype_v","m3_nelsoncar","OTHER");
+SetMissionResetPlayerInCar("m1_otto_carstart");
+SetDynaLoadData("l6z5.p3d;l6r4.p3d;l6r5.p3d;l6r5_dam.p3d;");
 
-SetPedGroup(0);
-
-SetForcedCar();
-
-AddStage();
-	SetStageMessageIndex(04);
-	SetHUDIcon("cvan_v");
-	AddObjective("losetail");
-	AddStageVehicle("cVan","m4_myst_vanspawn","chase","Missions\level01\M7evade.con");
-		SetObjTargetVehicle("cVan");
-		SetObjDistance(200);
-		RemoveNPC("nelson");
-	CloseObjective();
-	SetStageTime(60);
-	AddCondition("timeout");
-		//SetHitNRun();
-	CloseCondition();
-	AddCondition("outofvehicle");
-		SetCondTime( 10000 );
-	CloseCondition();
-	ShowStageComplete();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(05);
-SetHUDIcon("mansion");
-	AddObjective("goto");
-		SetDestination("m4_montys_estate","carsphere");
-	CloseObjective();
-	SetStageTime(50);
-	AddCondition("timeout");
-		//SetHitNRun();
-	CloseCondition();
-	AddCondition("outofvehicle");
-		SetCondTime( 10000 );
-	CloseCondition();
-	ShowStageComplete();
-CloseStage();
+UsePedGroup(6);
 
 AddStage();
 SetStageMessageIndex(06);
-SetHUDIcon("burns");
+SetHUDIcon("observ");
 	AddObjective("goto");
-		SetDestination("m4_burns","flanpic");
+		SetDestination("m4_observatory","carsphere");
 	CloseObjective();
-	SetStageTime(60);
+	SetStageTime(37);
 	AddCondition("timeout");
 		//SetHitNRun();
 	CloseCondition();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(07);
-SetHUDIcon("burns");
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
-	CloseObjective();
-	SetStageTime(20);
-	AddCondition("timeout");
-		//SetHitNRun();
-	CloseCondition();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(08);
-SetHUDIcon("simpsons");
-	AddObjective("goto");
-		SetDestination("m4_dropoff","triggersphere");
-	CloseObjective();
-	SetStageTime(90);
 	AddCondition("outofvehicle");
 		SetCondTime( 10000 );
+	CloseCondititon();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
 	CloseCondition();
 	ShowStageComplete();
 CloseStage();
 
-AddStage();
-SetStageMessageIndex(08);
-SetHUDIcon("bartroom");
-	AddObjective("goto");
-		SetDestination("outside_bartroom");
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(09);
-SetHUDIcon("bart");
+AddStage(5);
+	SetStageMessageIndex(11);
+	SetHUDIcon("lisa");
 	AddObjective("talkto");
-		AddNPC("bart", "m6_bart");
-		AddNPC("nelson","m6_marge");
-		SetTalkToTarget("bart", 0, 0);
+		AddNPC("lisa", "m4_frink_sd");
+		SetTalkToTarget("lisa", 0, 0);
 	CloseObjective();
 CloseStage();
 
 AddStage();
-SetHUDIcon("bart");
+SetHUDIcon("lisa");
+	SetStageMessageIndex(08);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("grampa");
+	SetStageMessageIndex(09);
+	AddObjective("timer");
+		SetDurationTime(3);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("lisa");
 	SetStageMessageIndex(10);
 	AddObjective("timer");
 		SetDurationTime(3);
@@ -107,15 +59,7 @@ SetHUDIcon("bart");
 CloseStage();
 
 AddStage();
-SetHUDIcon("nelson");
-	SetStageMessageIndex(11);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("bart");
+SetHUDIcon("lisa");
 	SetStageMessageIndex(13);
 	AddObjective("timer");
 		SetDurationTime(3);
@@ -123,16 +67,51 @@ SetHUDIcon("bart");
 CloseStage();
 
 AddStage();
+SetHUDIcon("lisa");
+	SetStageMessageIndex(14);
 	AddObjective("timer");
-		SetDurationTime(1);
-		StayInBlack();
+		SetDurationTime(1.5);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("lisa");
+	SetStageMessageIndex(15);
+	AddObjective("timer");
+		SetDurationTime(1.5);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("lisa");
+	SetStageMessageIndex(16);
+	AddObjective("timer");
+		SetDurationTime(1.5);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("lisa");
+	SetStageMessageIndex(17);
+	AddObjective("timer");
+		SetDurationTime(1.5);
+	CloseObjective();
+CloseStage();
+
+AddStage();
+SetHUDIcon("lisa");
+	SetStageMessageIndex(18);
+	AddObjective("timer");
+		SetDurationTime(3);
 	CloseObjective();
 CloseStage();
 
 AddStage("final");
+SetHUDIcon("grampa");
+	SetStageMessageIndex(19);
 	AddObjective("timer");
-		SetDurationTime(1);
+		SetDurationTime(3);
 	CloseObjective();
 CloseStage();
-
+	
 CloseMission();

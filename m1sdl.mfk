@@ -1,6 +1,3 @@
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\retire.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\milhouse.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\lisa.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\homer.p3d" );
-
-//LoadP3DFile("art\missions\generic\bar_door.p3d");
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\apu.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\grampa.p3d" );
+LoadP3DFile("art\frontend\dynaload\images\msnicons\vehicle\smith_v.p3d");
