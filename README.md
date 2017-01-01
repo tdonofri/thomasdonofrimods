@@ -1,5 +1,2 @@
-# Thomas Donofri
-Basically this is where I'll upload the source for my mods old and new.
-
-
-# Mods will have their own branches, feel free to explore!
+# Army Of Cola: Evergreen Buzz
+This mod both introduced me to SHAR modding, and also taught me to take my time (noticed the mod quaility, it's low lol)
