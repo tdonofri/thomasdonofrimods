@@ -1,15 +1,5 @@
-LoadP3DFile( "art\missions\level01\m1.p3d" );
-LoadP3DFile( "art\missions\level01\h_soda.p3d" );
+LoadP3DFile("art\missions\level01\m1.p3d");
+LoadP3DFile("art\missions\level01\pills.p3d");
 
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\playgrou.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\vehicle\bsedan_v.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\buzzcola.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\bartroom.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\milhouse.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\lisa.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\bart.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\simpsons.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\vehicle\apu_v.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\lenny.p3d" );
-
-LoadDisposableCar("art\cars\scorp_v.p3d","scorp_v","AI"); 
+LoadP3DFile("art\frontend\dynaload\images\msnicons\location\kwike.p3d");
+LoadP3DFile("art\frontend\dynaload\images\msnicons\object\pills.p3d");

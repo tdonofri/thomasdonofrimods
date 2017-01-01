@@ -1,106 +1,126 @@
 SelectMission("m3");
 
-SetMissionResetPlayerInCar("m3_reset");
-SetDynaLoadData("l4z7.p3d;l4r6.p3d;l4r7.p3d;");
-InitLevelPlayerVehicle("hype_v","m3_nelsoncar","OTHER");
+SetMissionResetPlayerInCar("m3_gramp_v");
+SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;");
+InitLevelPlayerVehicle("gramp_v","m3_gramp_v","OTHER");
 
-SetPedGroup(0);
-
+UsePedGroup(1);
+//This is a forced car mission.
 SetForcedCar();
 
-AddStage(0);
-SetHUDIcon("lasergun");
-RESET_TO_HERE();
-	SetStageMessageIndex(13);
-	SetStageTime(30);
-	AddObjective("delivery", "neither");
-		AddCollectible("m3_supplies1","medkit");
-		AddCollectible("m3_supplies2","i_bldbag");
-		AddCollectible("m3_supplies3","map");
-		AddCollectible("m3_supplies4","lasergun");
-		RemoveNPC("nelson");
+AddStage(); 
+	RESET_TO_HERE();
+	ShowStageComplete(); 
+	SetStageMessageIndex(5);
+	SetHUDIcon( "ketchup" );
+
+	StartCountdown("count");
+		AddToCountdownSequence( "3", 1000 ); // duration time in milliseconds
+		AddToCountdownSequence( "2", 1000 ); // duration time in milliseconds
+		AddToCountdownSequence( "1", 1000 ); // duration time in milliseconds
+		AddToCountdownSequence( "GO", 400 ); // duration time in milliseconds
+
+	AddObjective("delivery");
+		AddCollectible("m3_t1","jeans");
+		AddCollectible("m3_t2","ketchup");
+		AddCollectible("m3_t3","tomat");
+		RemoveNPC("grandpa");
 	CloseObjective();
+	SetStageTime(45);
 	AddCondition("timeout");
 		//SetHitNRun();
 	CloseCondition();
 	AddCondition("outofvehicle");
 		SetCondTime( 10000 );
-	CloseCondititon();
+	CloseCondition();
 	AddCondition( "damage" );
 		SetCondMinHealth( 0.0 );
-		SetCondTargetVehicle( "current" );
+		SetCondTargetVehicle( "gramp_v" );
 	CloseCondition();
-	ShowStageComplete();
 CloseStage();
 
-AddStage(1);
-SetHUDIcon("mansion");
-SetStageMessageIndex(15);
+AddStage(); // Oh Oh There's Wiggum Again
+	SetStageMessageIndex(01);
+	SetHUDIcon("simpsons");
 	AddObjective("goto");
-		SetDestination("m3_quimbyraid","triggersphere");
-		AddStageVehicle("cBlbart","m3_chasestart","NULL","Missions\level01\M7evade.con");		
+		SetDestination("m3_false","carsphere");
+		AddStageVehicle("cPolice","m3_wiggum","NULL","Chase\MedChas.con","wiggum");
 	CloseObjective();
+	SetStageTime(40);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
 	AddCondition("outofvehicle");
 		SetCondTime( 10000 );
 	CloseCondition();
-	SetStageTime(95);
-	AddCondition("timeout");
-		//SetHitNRun();
 	AddCondition( "damage" );
 		SetCondMinHealth( 0.0 );
-		SetCondTargetVehicle( "current" );
+		SetCondTargetVehicle( "gramp_v" );
 	CloseCondition();
+	SetCompletionDialog("jeans","wiggum");
 CloseStage();
 
-AddStage();
-SetHUDIcon("sports_v");
-SetStageMessageIndex(14);
+AddStage(); // Oh Oh There's Wiggum Again
+	SetStageMessageIndex(02);
+	SetHUDIcon("wiggu_v");
 	AddObjective("losetail");
-	ActivateVehicle("cBlbart","NULL","chase");
-		SetObjTargetVehicle("cBlbart");
-		SetObjDistance(200);
-		AllowRockOut();
+		ActivateVehicle("cPolice","chase","Missions\level05\M2evade.con");
+		SetObjTargetVehicle("cPolice");
+		SetObjDistance(125);
 	CloseObjective();
-	SetStageTime(60);
+	SetStageTime(30);
 	AddCondition("timeout");
 		//SetHitNRun();
 	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
 	AddCondition( "damage" );
 		SetCondMinHealth( 0.0 );
-		SetCondTargetVehicle( "current" );
+		SetCondTargetVehicle( "gramp_v" );
 	CloseCondition();
 	StageStartMusicEvent("M3_drama");
-	ShowStageComplete();
 CloseStage();
 
 AddStage();
-	SetHUDIcon("ralph");
-	SetStageMessageIndex(16);
+	SetStageMessageIndex(01);
+	SetHUDIcon("simpsons");
 	AddObjective("goto");
-		SetDestination("m3_nelsonhouse","carsphere");
+		SetDestination("m3_false","carsphere");
 	CloseObjective();
-	AddCondition( "damage" );
-		SetCondMinHealth( 0.0 );
-		SetCondTargetVehicle( "current" );
-	CloseCondition();
-	AddCondition("outofvehicle");
-		SetCondTime( 10000 );
-	CloseCondititon();
-	SetStageTime(75);
-	AddCondition("timeout");
-		//SetHitNRun();
+		SetStageTime(15);
+		AddCondition("timeout");
+			//SetHitNRun();
+		CloseCondition();
+		AddCondition("outofvehicle");
+			SetCondTime( 10000 );
+		CloseCondition();
+		AddCondition( "damage" );
+			SetCondMinHealth( 0.0 );
+			SetCondTargetVehicle( "gramp_v" );
+		CloseCondition();
+	SetCompletionDialog("pill","grandpa");
 CloseStage();
 
-AddStage("final"); // gets Lisa out of the Car and hides the car
+AddStage("final");
 	AddObjective("timer");
-		RemoveDriver("nelson");
-		AddNPC("nelson", "m3_nelsontalk");
-		SetDurationTime(1);
+		SetDurationTime(3);
 	CloseObjective();
 	SwapInDefaultCar();
-		SetSwapDefaultCarLocator("m3_nelsonhousecar");
-		SetSwapForcedCarLocator("m3_chasestart"); 
-		SetSwapPlayerLocator("m3_nelsonhousetype3");
+		SetSwapDefaultCarLocator("level4_carstart");
+		SetSwapForcedCarLocator("m3_gramp_v");
+		SetSwapPlayerLocator("level1_homer_start");
 CloseStage();
 
 CloseMission();
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air

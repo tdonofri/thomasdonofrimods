@@ -1,123 +1,48 @@
 SelectMission("m3sd");
 
-SetMissionResetPlayerInCar("level4_carstart");
-SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;");
+SetMissionResetPlayerOutCar("m3_start","m3_carstarta");
+SetDynaLoadData("l4z4.p3d;l4z6.p3d;l4r6.p3d;");
 
-SetPedGroup(0);
-
-AddStage(0);
-RESET_TO_HERE();
-	SetStageMessageIndex(12);
-	SetHUDIcon("simpsons");
-	AddObjective("goto");
-		SetDestination("m6_simpsonhouse","carsphere");
-	CloseObjective();
-CloseStage();
+UsePedGroup(1);
 
 AddStage();
-	SetStageMessageIndex(01);
-	SetHUDIcon("bartroom");
-	AddObjective("interior");
-		AddNPC("bart", "m6_bart");
-		SetDestination("bartroom"); // use name of interiors entry locator
-	CloseObjective();
-CloseStage();
-
-AddStage();
-	SetStageMessageIndex(02);
-	SetHUDIcon("bart");
+	SetMaxTraffic(3);
+	SetStageMessageIndex(25);
+	SetHUDIcon( "grampa" );
 	AddObjective("talkto");
-		AddNPC("bart", "m6_bart");
-		SetTalkToTarget("bart", 0, 0);
+		AddStageVehicle("gramp_v","m3_gramp_v","NULL","EasyRace\AI_5th.con");
+		AddNPC("grandpa", "m3_grp");
+		SetTalkToTarget("grandpa", 0, 0); 
 	CloseObjective();
 CloseStage();
 
 AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(03);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("bart");
-SetStageMessageIndex(04);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(05);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("bart");
-SetStageMessageIndex(06);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(07);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-	SetStageMessageIndex(12);
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
-	CloseObjective();
-CloseStage();
-
-AddStage();
-	SetStageMessageIndex(08);
-	AddObjective("goto");
-		SetDestination("m3_nelsonhouse","carsphere");
-		AddNPC( "nelson", "m3_nelsontalk" );
-		AddStageVehicle("hype_v","m3_nelsoncar","NULL","EasyRace\AI_5th.con");
-	CloseObjective();
-CloseStage();
-
-AddStage();
-	SetStageMessageIndex(09);
-	AddObjective("talkto");
-		AddNPC( "nelson", "m3_nelsontalk" );
-		SetTalkToTarget("nelson", 0, 0);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-	SetHUDIcon("lisa");
-	SetStageMessageIndex(10);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-	SetHUDIcon("nelson");
-	SetStageMessageIndex(11);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(13);
-	SetStageMessageIndex(12);
-	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_03.p3d" );
-	AddObjective("timer");
-		SetDurationTime(1);
+	AddObjective("dialogue");
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		SetConversationCam( 0, "pc_far" );
+		SetConversationCam( 1, "npc_far" );
+		SetConversationCam( 2, "pc_far" );
+		SetConversationCam( 3, "npc_far" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_no" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_shake_hand_in_air" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_hands_in_air" );
+		SetDialogueInfo("homer","grandpa","ride",0);
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air

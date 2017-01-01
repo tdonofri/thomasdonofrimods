@@ -1,58 +1,76 @@
 SelectMission("m7sd");
 
-SetMissionResetPlayerInCar("m6_reset");
-SetDynaLoadData("l4r3.p3d;l4z2.p3d;l4r2.p3d;l4z3.p3d;");
+SetMissionResetPlayerOutCar("m7_hom_start","m7_carstart");
+SetDynaLoadData("l4r4a.p3d;l4z6.p3d;l4r6.p3d;");
 
 UsePedGroup(1);
 
+AddStage();
+RESET_TO_HERE();
+	SetStageMessageIndex(12);
+	AddObjective("getin");
+		SetObjTargetVehicle("current");
+	CloseObjective();
+CloseStage();
+
 AddStage(0);
+	SetMaxTraffic(3);
 	SetStageMessageIndex(01);
-	SetHUDIcon("nelson");
+	SetHUDIcon("tamacco");
+	AddObjective( "goto" );
+		AddNPC("bart", "m7_brt"); 
+		SetDestination( "m7_crop", "carsphere");
+		SetCollectibleEffect("wrench_collect");
+	CloseObjective();
+	ShowStageComplete();
+CloseStage();
+
+AddStage(25);
+	SetStageMessageIndex(02);
+	SetHUDIcon( "bart" );
 	AddObjective("talkto");
-		AddNPC("nelson", "m6_nelsonplace");
-		AddNPC("grandpa", "m7_grampplace" );
-		SetTalkToTarget("nelson", 0, -0.5);
+		AddNPC("bart", "m7_brt"); 
+		SetTalkToTarget("bart", 0, -0.2, "3.0");
+	CloseObjective();
+CloseStage();
+
+AddStage(1);
+	AddObjective("dialogue");
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_thinking" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_cross_arms" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_hands_on_hips" );
+		SetConversationCam( 3, "pc_far" );
+		SetDialogueInfo("homer","bart","warez",0);
 	CloseObjective();
 CloseStage();
 
 AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(02);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(03);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("grampa");
-SetStageMessageIndex(04);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("nelson");
-SetStageMessageIndex(05);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(12);
-SetPresentationBitmap( "art/frontend/dynaload/images/mis01_07.p3d" );
+	SetStageMessageIndex(12);
+	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_07.p3d" );
 	AddObjective("getin");
 		SetObjTargetVehicle("current");
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air

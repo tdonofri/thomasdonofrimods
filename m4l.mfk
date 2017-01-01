@@ -1,15 +1,6 @@
 LoadP3DFile("art\missions\level01\m4.p3d");
 
-LoadDisposableCar( "art\cars\hype_v.p3d","hype_v","OTHER" ); 
-LoadDisposableCar( "art\cars\cVan.p3d","cVan","AI" ); 
+LoadDisposableCar("art\cars\cKlimo.p3d","cKlimo","AI");
 
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\vehicle\cvan_v.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\mansion.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\bartroom.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\lisa.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\bart.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\nelson.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\burns.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\simpsons.p3d" );
-
-LoadP3DFile( "art\missions\level01\flanpic.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\retire.p3d" );
+LoadP3DFile("art\missions\generic\fline.p3d");

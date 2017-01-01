@@ -2,115 +2,84 @@ SelectMission("m2");
 
 SetMissionResetPlayerInCar("m2_reset");
 SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;l4i07.p3d");
-InitLevelPlayerVehicle("skinn_v","m2_skinner_car","OTHER");
 
-UsePedGroup(0);
-
-SetForcedCar();
-
-AddStage(0);
-	SetHUDIcon("kwike");
-	SetStageMessageIndex(07);
-	AddObjective("goto");
-		SetDestination("m7_kwik","carsphere");
-		RemoveNPC("skinner");
+AddStage();
+RESET_TO_HERE();
+NoTrafficForStage();
+PlacePlayerCar("current", "m2_reset");
+PutMFPlayerInCar( );  // This makes the play auto reset into their car for this stage.     
+	StartCountdown(count);
+	AddToCountdownSequence( "3", 1000 ); // duration time in milliseconds
+	AddToCountdownSequence( "2", 1000 ); // duration time in milliseconds
+	AddToCountdownSequence( "1", 1000 ); // duration time in milliseconds
+	AddToCountdownSequence( "GO", 400 ); // duration time in milliseconds
+	AddStageVehicle("SUVA","m2_r1","race","HardRace\AI_1st.con" );
+	AddStageVehicle("cCellD","m2_r2","race","HardRace\AI_2nd.con" );
+	AddStageVehicle("cPolice","m2_r3","race","HardRace\AI_3rd.con" );
+	SetStageAIRaceCatchupParams("cCellD", 80, 0.9, 1.5, 2.3); 
+	SetStageAIRaceCatchupParams("cPolice", 80, 0.8, 1.4, 2.3); 
+	SetStageAIRaceCatchupParams("SUVA", 80, 0.9, 1.3, 2.5); 
+	SetVehicleAIParams( "SUVA", 50, 51 );   // no shortcuts
+	SetVehicleAIParams( "cCellD", 45, 51 );   // no shortcuts
+	SetVehicleAIParams( "cPolice", 50, 46 );   // no shortcuts
+		AddStageWaypoint( "m2_check2");
+		AddStageWaypoint( "m2_check3");
+		AddStageWaypoint( "m2_check4");
+		AddStageWaypoint( "m2_check5");
+	AddObjective( "race" );
+		DisableHitAndRun();
+//		SetHitAndRunMeter(100);
+		AddCollectible("m2_check1","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m2_check2","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m2_check3","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m2_check4","carsphere");
+		SetCollectibleEffect("wrench_collect");
+		AddCollectible("m2_check5","finish_line");
+		SetCollectibleEffect("wrench_collect");
 	CloseObjective();
-	SetStageTime(45);
-	AddCondition("timeout");
-	CloseCondititon();
 	AddCondition("outofvehicle");
 		SetCondTime( 10000 );
-	CloseCondititon();
-CloseStage();
-
-AddStage(1);
-	SetHUDIcon("kwike");
-	SetStageMessageIndex(08);
-	AddObjective("interior");
-		AddNPC("apu", "m7_apu_sd");
-		SetDestination("KwikEMart", "kwik_mission_doorstar");
-	CloseObjective();
-CloseStage();
-
-AddStage(2);
-	SetHUDIcon("record");
-	SetStageMessageIndex(14);
-	AddObjective("goto");
-		AddNPC("apu", "m7_apu_sd");
-		SetDestination("m2_cola","record");
-	CloseObjective();
-CloseStage();
-
-AddStage(3);
-	SetHUDIcon("skinner");
-	SetStageMessageIndex(09);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(4);
-	SetHUDIcon("svt");
-	SetStageMessageIndex(10);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(5);
-	SetHUDIcon("skinner");
-	SetStageMessageIndex(11);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(6);
-	SetHUDIcon("svt");
-	SetStageMessageIndex(17);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(7);
-	SetStageMessageIndex(12);
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
-	CloseObjective();
-CloseStage();
-
-AddStage(0);
-	SetHUDIcon("kbmeal");
-	SetStageMessageIndex(19);
-	AddObjective("goto");
-		SetDestination("m2_kburger", "kmeal");
-	CloseObjective();
-	SetStageTime(45);
-	AddCondition("timeout");
-		//SetHitNRun();
+	CloseCondition();
+	AddCondition("position");
+		SetConditionPosition(1);
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
 	CloseCondition();
 CloseStage();
 
-AddStage(4);
-	SetHUDIcon("skinner");
-	SetStageMessageIndex(20);
+AddStage();
+	SetStageMessageIndex(03);
+	SetHUDIcon("wstation");
 	AddObjective("goto");
-		SetDestination("m2_dropoff", "ketchup");
+		SetDestination("m2_of","carsphere");
 	CloseObjective();
-	SetStageTime(75);
-	SwapInDefaultCar();
-		SetSwapDefaultCarLocator("m2_marge_car2");
-		SetSwapForcedCarLocator("m3_starting_point"); 
-		SetSwapPlayerLocator("m2_marge_2");
+	SetStageTime(30);
+	AddCondition("timeout");
+		//SetHitNRun();
 CloseStage();
 
+AddStage();
+	SetStageMessageIndex(03);
+	SetHUDIcon("wstation");
+	AddObjective("goto");
+		AddNPC("burns", "m2_r1");
+		SetDestination("m2_office","triggersphere");
+		MustActionTrigger();
+	CloseObjective();
+CloseStage();
 
-AddStage("final"); // gets Lisa out of the Car and hides the car
-	AddObjective("timer");
-		RemoveDriver("skinner");
-		AddNPC("skinner", "m3_cletus_walk1");
-		SetDurationTime(1);
+AddStage("final");
+	AddObjective("dialogue");
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_hands_in_air" );
+		SetDialogueInfo("homer","burns","burns",0);
 	CloseObjective();
 CloseStage();
 

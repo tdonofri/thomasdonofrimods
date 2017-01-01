@@ -1,13 +1,10 @@
-LoadDisposableCar( "art\cars\hype_v.p3d","hype_v","OTHER" ); 
-LoadDisposableCar( "art\cars\cBlbart.p3d","cBlbart","AI" ); 
+LoadP3DFile("art\missions\level01\m3.p3d");
 
-LoadP3DFile( "art\missions\level01\m3.p3d" );
-LoadP3DFile( "art\missions\level01\lasergun.p3d" );
-LoadP3DFile( "art\missions\level01\i_bldbag.p3d" );
-LoadP3DFile( "art\missions\level01\map.p3d" );
-LoadP3DFile( "art\missions\level01\medkit.p3d" );
+LoadDisposableCar("art\cars\gramp_v.p3d","gramp_v","OTHER");
+LoadDisposableCar("art\cars\wiggu_v.p3d","wiggu_v","AI");
+LoadP3DFile("art\missions\level01\jeans.p3d");
+LoadP3DFile("art\missions\level01\ketchup.p3d");
+LoadP3DFile("art\missions\level01\tomat.p3d");
 
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\mansion.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\vehicle\sports_v.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\lasergun.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\ralph.p3d" );
+LoadP3DFile("art\frontend\dynaload\images\msnicons\vehicle\wiggu_v.p3d");
+LoadP3DFile("art\frontend\dynaload\images\msnicons\location\simpsons.p3d");

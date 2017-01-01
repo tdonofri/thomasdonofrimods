@@ -1,146 +1,62 @@
 SelectMission("m1");
 
-SetMissionResetPlayerInCar("m1_retire_carstart");
-SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;l4z1.p3d;");
+SetMissionResetPlayerOutCar("m6_marge_start","level4_carstart");
+SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;");
 
-UsePedGroup(0);
-
-AddStage(0);
+AddStage();
+SetStageMessageIndex(12);
 	AddObjective("getin");
 		SetObjTargetVehicle("current");
 	CloseObjective();
-CloseStage();
-
-AddStage(0);
-RESET_TO_HERE();
-SetHUDIcon("playgrou");
-SetStageMessageIndex(08);
-	AddObjective("goto");
-		SetDestination("m1_school","carsphere");
-		AddStageVehicle("scorp_v","m1_losetail_carstart","NULL","Missions\level01\M7evade.con","kearney");
-	CloseObjective();
-	SetStageTime(35);
+	SetStageTime(10);
 	AddCondition("timeout");
-		//SetHitNRun();
 	CloseCondition();
 CloseStage();
 
 AddStage();
-SetStageMessageIndex(23);
-SetHUDIcon("apu_v");
-	AddObjective("losetail");
-	ActivateVehicle("scorp_v","NULL","chase");
-		SetObjTargetVehicle("scorp_v");
-		SetObjDistance(175);
+	SetStageMessageIndex(02);
+	SetHUDIcon();
+	AddObjective("goto");
+		SetDestination("m1_bridge","carsphere");
 	CloseObjective();
-	SetStageTime(60);
+	SetStageTime(25);
 	AddCondition("timeout");
 		//SetHitNRun();
 	CloseCondition();
-	StageStartMusicEvent("M1_drama");
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
 	ShowStageComplete();
 CloseStage();
 
 AddStage();
-SetStageMessageIndex(21);
-SetHUDIcon("lenny");
-	AddObjective("goto");
-		SetDestination("m1_dropoff","carsphere");
-	CloseObjective();
-	SetStageTime(95);
+	SetStageMessageIndex(03);
+	SetHUDIcon("pills");
+	AddObjective("delivery");
+		AddCollectible("m1_item1","pills");
+		AddCollectible("m1_item2","pills");
+		AddCollectible("m1_item3","pills");
+	SetStageTime(45);
 	AddCondition("timeout");
 		//SetHitNRun();
 	CloseCondition();
-CloseStage();
-
-AddStage(3); // These stages are left over, TBD what will happen!
-	SetStageMessageIndex(22);
-	SetHUDIcon("bartroom");
-	AddObjective("interior");
-		AddNPC("bart", "m6_bart");
-		SetDestination("bartroom"); // use name of interiors entry locator
-	CloseObjective();
-CloseStage();
-
- AddStage(4);
-	SetHUDIcon("bart");
-	SetStageMessageIndex(11);
-	AddObjective( "talkto" );
-		AddNPC( "bart", "m6_bart" );
-		SetTalkToTarget("bart", 0, 0);
-	CloseObjective();
-CloseStage();
-
-AddStage(5);
-SetHUDIcon("lisa");
-SetStageMessageIndex(13);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(6);
-SetHUDIcon("bart");
-SetStageMessageIndex(14);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(7);
-SetHUDIcon("lisa");
-SetStageMessageIndex(15);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
+	ShowStageComplete();
 CloseStage();
 	
-AddStage(8);
-SetHUDIcon("bart");
-SetStageMessageIndex(16);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(9);
-SetHUDIcon("bart");
-SetStageMessageIndex(17);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(10);
-SetHUDIcon("bart");
-SetStageMessageIndex(18);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(11);
-SetHUDIcon("bart");
-SetStageMessageIndex(19);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();	
-
-AddStage(12);
-SetHUDIcon("lisa");
-SetStageMessageIndex(20);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage("final");
-SetHUDIcon("simpsons");
-SetStageMessageIndex(24);
-	AddObjective("goto");
-		SetDestination("m6_simpsonhouse","triggersphere");
-	CloseObjective();
-CloseStage();
-
 CloseMission();
+
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air

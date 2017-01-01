@@ -1,53 +1,159 @@
 SelectMission("m5");
 
-SetMissionResetPlayerInCar("m5_reset");
-SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;l4z1.p3d;");
+SetMissionResetPlayerInCar("m5_carstart");
+SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;");
+InitLevelPlayerVehicle("snake_v","m5_carstart","OTHER");
+
+SetForcedCar();
 
 UsePedGroup(1);
 
-AddStage("final");
-NoTrafficForStage();
-PlacePlayerCar("current", "m5_reset");
-PutMFPlayerInCar( );  // This makes the play auto reset into their car for this stage.                
-StartCountdown("count");
-	AddToCountdownSequence( "3", 1000 ); // duration time in milliseconds
-	AddToCountdownSequence( "2", 800 ); // duration time in milliseconds
-	AddToCountdownSequence( "1", 800 ); // duration time in milliseconds
-	AddToCountdownSequence( "GO", 400 ); // duration time in milliseconds
-
-//SetStageAIRaceCatchupParams( 
-//	STAGEVEHICLENAME,
-//      ALONGROADDISTFROMPLAYER_TO_APPLYMAXCATCHUP, // default = 80
-//      FRACTIONPLAYERSPEED_MINCATCHUP,   // default = 0.5
-//      FRACTIONPLAYERSPEED_NOCATCHUP,    // default = 1.1
-//      FRACTIONPLAYERSPEED_MAXCATCHUP )  // default = 1.7
-//SetStageAIRaceCatchupParams("hype_v", 80, 0.5, 1.1, 1.7); 
-	
+AddStage(0);
 	RESET_TO_HERE();
-	SetStageMessageIndex(05);
-	SetHUDIcon( "mansion" );
-	AddStageVehicle("hype_v","m5_nelsoncar","race","Missions\level04\M4race.con", "nelson");
-	SetStageAIRaceCatchupParams("hype_v", 80, 0.9, 1.5, 2.3); 
-	SetVehicleAIParams( "hype_v", 50, 51 );   // no shortcuts
-	AddStageWaypoint( "m5_montys_estate" );
-	AddObjective( "race" );
-	DisableHitAndRun();
-//		SetHitAndRunMeter(100);
-		AddCollectible("m5_montys_estate","finish_line");
+	SetStageMessageIndex(04);
+	SetHUDIcon( "playgrou" );
+	AddObjective( "goto" );
+		SetDestination("m5_school","carsphere");
+		SetCollectibleEffect("wrench_collect");
 	CloseObjective();
-	AddCondition("race");
-		SetCondTargetVehicle("hype_v");
-	CloseCondition();
-	AddCondition("position");
-		SetConditionPosition(1);
-	CloseCondition();
-	AddCondition( "damage" );
-		SetCondMinHealth( 0.0 );
-		SetCondTargetVehicle( "current");
+	SetStageTime(30);
+	AddCondition("timeout");
+		//SetHitNRun();
 	CloseCondition();
 	AddCondition("outofvehicle");
 		SetCondTime( 10000 );
 	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+	
+AddStage();
+	SetHUDIcon("folder");
+	SetStageMessageIndex(01);
+	AddObjective("delivery");
+		AddCollectible("m5_folder1","i_folder");
+		AddCollectible("m5_folder2","i_folder");
+		AddCollectible("m5_folder4","i_folder");
+		AddCollectible("m5_folder5","i_folder");
+		AddCollectible("m5_folder6","i_folder");
+	CloseObjective();
+	SetStageTime(15);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+	
+AddStage();
+	SetStageMessageIndex(02);
+	SetHUDIcon("mansion");
+	AddObjective("goto");
+		SetDestination("m5_folderloc2","carsphere");
+		AddStageVehicle("burnsarm","m5_arm","NULL","Chase\MedChas.con");
+	CloseObjective();
+	SetStageTime(25);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+
+AddStage();
+SetStageMessageIndex(03);
+SetHUDIcon("arm_v");
+ActivateVehicle("burnsarm","NULL","target");
+SetVehicleAIParams( "burnsarm", -10, -9 );
+	AddStageWaypoint( "m5_folder7" );
+	AddStageWaypoint( "m5_folder8" );
+	AddStageWaypoint( "m5_folder9" );
+	AddStageWaypoint( "m5_folder10" );
+	AddStageWaypoint( "m5_folder11" );
+	AddStageWaypoint( "m5_folder12" );
+	AddObjective("dump");
+		SetObjTargetVehicle("burnsarm");
+		AddCollectible("m5_folder7","i_folder");
+		AddCollectible("m5_folder8","i_folder");
+		AddCollectible("m5_folder9","i_folder");
+		AddCollectible("m5_folder10","i_folder");
+		AddCollectible("m5_folder11","i_folder");
+		AddCollectible("m5_folder12","i_folder");
+		BindCollectibleTo(0, 0);
+		BindCollectibleTo(1, 1);
+		BindCollectibleTo(2, 2);
+		BindCollectibleTo(3, 3);
+		BindCollectibleTo(4, 4);
+		BindCollectibleTo(5, 5);
+		BindCollectibleTo(6, 6);
+		BindCollectibleTo(7, 7);
+	CloseObjective();
+	AddCondition("followdistance");
+		SetFollowDistances(0, 300);
+		SetCondTargetVehicle("burnsarm");
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+	SetCompletionDialog("hideout","snake");
+CloseStage();
+
+AddStage();
+	SetStageMessageIndex(240);
+	SetHUDIcon("cemetery");
+	AddObjective( "goto" );
+		SetDestination("m5_graveyard","carsphere");
+		SetCollectibleEffect("wrench_collect");
+	CloseObjective();
+	SetStageTime(35);
+	AddCondition("timeout");
+		//SetHitNRun();
+	CloseCondition();
+	AddCondition("outofvehicle");
+		SetCondTime( 10000 );
+	CloseCondition();
+	AddCondition( "damage" );
+		SetCondMinHealth( 0.0 );
+		SetCondTargetVehicle( "current" );
+	CloseCondition();
+CloseStage();
+
+AddStage("final");
+	AddObjective("timer");
+		SetDurationTime(3);
+		RemoveDriver("snake");
+	CloseObjective();
+	SwapInDefaultCar();
+		SetSwapDefaultCarLocator("m4_carstart");
+		SetSwapForcedCarLocator("m1_wiggum_place");
+		SetSwapPlayerLocator("m4_moleman_sd");
 CloseStage();
 
 CloseMission();
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air

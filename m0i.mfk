@@ -1,56 +1,79 @@
 SelectMission("m0");
 
-SetMissionResetPlayerInCar("m0_reset");
-SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;");
+SetMissionResetPlayerInCar("level1_carstart");
+SetDynaLoadData("l1z1.p3d;l1r1.p3d;l1r7.p3d;");
 
-UsePedGroup(6);
+UsePedGroup( 0 ); 
 
 AddStage(0);
-RESET_TO_HERE();
-    SetStageMessageIndex(05);
+	SetStageMessageIndex(12);
+	AddObjective("getin", "neither");
+		SetObjTargetVehicle("current");
+	CloseObjective();
+	SetStageTime(15);
+	AddCondition("timeout");
+	CloseCondition();
+CloseStage();
+
+AddStage(1);
+	RESET_TO_HERE();
+	SetHUDIcon( "kwike" );
+	ShowStageComplete();
+	SetStageMessageIndex(131);
 	AddObjective("goto");
-		AddStageVehicle("cArmor","m0_elbartovan_start","NULL","Destroy\MedDest.con");
-		SetDestination("m7_kwik", "carsphere");
+		SetDestination("m0_kwickemart","carsphere");
+		SetCollectibleEffect("wrench_collect");
 	CloseObjective();
 CloseStage();
 
 AddStage(1);
-	SetHUDIcon( "arm_v" );
-    SetStageMessageIndex(07);
-	ActivateVehicle("cArmor","NULL","target");
-	SetVehicleAIParams( "cArmor", -10, -9 );
-	AddStageWaypoint("m0_elbartovan_1");
-	AddStageWaypoint("m0_elbartovan_2");
-	AddStageWaypoint("m0_elbartovan_3");
-	AddStageWaypoint("m0_elbartovan_4");
-	AddStageWaypoint("m0_elbartovan_5");
-	AddStageWaypoint("m0_elbartovan_6");
-	AddStageWaypoint("m0_elbartovan_7");
-	AddStageWaypoint("m0_elbartovan_9");	
-	AddObjective("destroy");
-		SetObjTargetVehicle("cArmor");
+	SetHUDIcon( "kwike" );
+	SetMaxTraffic(2);
+	SetStageMessageIndex(102);
+	AddObjective("interior","neither");
+		SetDestination("KwikEMart", "kwik_mission_doorstar"); // use name of interiors entry locator
 	CloseObjective();
-	SetStageTime(150);
-	AddCondition("outofvehicle");
-		SetCondTime( 10000 );
-	CloseCondititon();
 CloseStage();
 
-AddStage(0);
-	SetStageMessageIndex(263);
-	SetHUDIcon("bartroom");
-	AddObjective("interior");
-		AddNPC("bart", "m6_bart");
-		SetDestination("bartroom"); // use name of interiors entry locator
+AddStage(2);
+	SetHUDIcon( "apu" );
+	SetStageMessageIndex(157);
+	AddObjective("talkto","nearest road");
+		SetTalkToTarget("apu", 0, -0.3, "3.0"); // 2 - door icon, "3.0" is the size of the NPC trigger area
+	CloseObjective();
+CloseStage();
+
+AddStage(3);
+	AddObjective("dialogue");
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_hands_on_hips" );
+		AddAmbientPcAnimation( "dialogue_shake_hand_in_air" );
+		//SetConversationCamNpcName("npc_far");
+		//SetConversationCamPcName("pc_near");
+		SetDialogueInfo("homer","apu","nop",0);
 	CloseObjective();
 CloseStage();
 
 AddStage("final");
-	SetStageMessageIndex(08);
-	SetHUDIcon("bartroom");
+	SetHUDIcon( "comic" );
+	SetStageMessageIndex(152);
 	AddObjective("goto");
-		SetDestination("m6_gated_start","triggersphere");
+		TurnGotoDialogOff();
+		SetDestination("m0_cola","is_comic");
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air

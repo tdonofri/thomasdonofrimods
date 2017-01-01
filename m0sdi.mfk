@@ -1,79 +1,55 @@
 SelectMission("m0sd");
 
-SetMissionResetPlayerOutCar("L4_marge_sd","level4_carstart");
-SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;l4i02.p3d@", "SimpsonsHouse");
+SetMissionResetPlayerOutCar("level1_homer_start", "level1_carstart");
+SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;");
 
-UsePedGroup(0);
+UsePedGroup( 0 );
 
 AddStage(0);
-    SetStageMessageIndex(250);
-    AddObjective("gooutside");
-        SetDestination("outside_Simpsons_house_locator");
-    CloseObjective();
-CloseStage();
-
-AddStage(2);
-RESET_TO_HERE();
-	SetStageMessageIndex(12);
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
+	SetMaxTraffic(2);
+	SetHUDIcon("marage");	
+	SetStageMessageIndex(00);
+	AddObjective("talkto","neither");
+		AddNPC("marge", "m0_marage");
+		SetTalkToTarget("marge", 0, 0.2);
 	CloseObjective();
 CloseStage();
 
-AddStage(3);
-	SetHUDIcon("lardlads");
-	SetStageMissionIndex(06);
-	AddObjective("goto");
-		SetDestination( "m1_lardlads", "carsphere" );
-	CloseObjective();
- CloseStage();
- 
- AddStage(4);
-	SetHUDIcon("bart");
-	SetStageMessageIndex(01);
-	AddObjective( "talkto" );
-		AddNPC( "bart", "m1_wiggum_place" );
-		AddObjectiveNPCWaypoint( "bart", "m1_wiggum_place" );
-		SetTalkToTarget("bart", 0, 0);
-	CloseObjective();
-CloseStage();
-
-AddStage(5);
-	SetHUDIcon("lisa");
-	SetStageMessageIndex(02);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(6);
-	SetHUDIcon("bart");
-	SetStageMessageIndex(03);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(7);
-	SetHUDIcon("lisa");
-	SetStageMessageIndex(04);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-//AddStage(8);
-	//AddObjective("fmv");
-		//SetFMVInfo("fmv2.rmv");
-	//CloseObjective();
-//CloseStage();
-
-AddStage(9);
-	SetStageMessageIndex(12);
-	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_00.p3d" );
-	AddObjective("timer");
-		SetDurationTime(1);
+AddStage(1);
+	AddObjective("dialogue");
+		SetPresentationBitmap( "art/frontend/dynaload/images/mis01_00.p3d" );
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		SetConversationCam( 0, "npc_far" );
+		SetConversationCam( 1, "npc_near" );
+		SetConversationCam( 2, "npc_near" );
+		SetConversationCam( 3, "npc_far" );
+		AddAmbientNpcAnimation( "dialogue_open_arm_hand_gesture" );
+		AddAmbientNpcAnimation( "dialogue_shaking_fist" );
+		AddAmbientNpcAnimation( "dialogue_no" );
+		AddAmbientNpcAnimation( "dialogue_cross_arms" );
+		AddAmbientPcAnimation( "dialogue_thinking" );
+		AddAmbientPcAnimation( "dialogue_scratch_head" );
+		AddAmbientPcAnimation( "dialogue_hands_in_air" );
+		AddAmbientPcAnimation( "dialogue_no" );
+		//SetConversationCamNpcName("npc_far");
+		//SetConversationCamPcName("pc_far");
+		SetDialogueInfo("homer","marge","what",0);
+		SetCamBestSide("m0_hom1");
+		SetDialoguePositions("m0_hom","m0_marage");
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_cross_arms
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air

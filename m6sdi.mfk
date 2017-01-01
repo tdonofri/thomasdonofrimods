@@ -1,66 +1,60 @@
 SelectMission("m6sd");
 
-SetMissionResetPlayerInCar("m6_start");
-
-SetDynaLoadData("l4z4.p3d;l4z6.p3d;l4r4a.p3d;l4r4b.p3d;l4r3.p3d;");
+SetMissionResetPlayerOutCar("m7_hom_start","m7_carstart");
+SetDynaLoadData("l4r4a.p3d;l4z6.p3d;l4r6.p3d;");
 
 UsePedGroup(0);
+
 AddStage(0);
 	SetMaxTraffic(3);
-	SetStageMessageIndex(01);
+	SetHUDIcon("wstation");
+	SetStageMessageIndex(02);
 	AddObjective( "goto" );
-		SetDestination( "m6_gasstation", "carsphere");
-		SetCollectibleEffect("wrench_collect");
+		AddNPC("burns", "m6_bur");
+		SetDestination( "m6_w", "triggersphere");
 	CloseObjective();
 CloseStage();
 
 AddStage(0);
+RESET_TO_HERE();
 	SetStageMessageIndex(01);
-	SetHUDIcon("nelson");
+	SetHUDIcon("burns");
 	AddObjective("talkto");
-		AddNPC("nelson", "m6_nelsonplace");
-		SetTalkToTarget("nelson", 0, -0.5);
+		AddNPC("burns", "m6_bur");
+		SetTalkToTarget("burns", 0, -0.5);
 	CloseObjective();
 CloseStage();
 
 AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(02);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("nelson");
-SetStageMessageIndex(03);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("lisa");
-SetStageMessageIndex(04);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetHUDIcon("nelson");
-SetStageMessageIndex(05);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage();
-SetStageMessageIndex(12);
-SetPresentationBitmap( "art/frontend/dynaload/images/mis01_06.p3d" );
-	AddObjective("getin");
-		SetObjTargetVehicle("current");
+	AddObjective("dialogue");
+		SetPresentationBitmap( "art/frontend/dynaload/images/mis01_06.p3d" );
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_yes" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_no" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_shake_hand_in_air" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_scratch_head" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_scratch_head" );
+		SetConversationCam( 3, "pc_far" );
+		SetDialogueInfo("homer","burns","witty",0);
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air
+

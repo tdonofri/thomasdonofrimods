@@ -1,82 +1,67 @@
 SelectMission("m2sd");
 
-SetMissionResetPlayerInCar("level4_carstart");
+SetMissionResetPlayerOutCar("m6_marge_start","level4_carstart");
 SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;");
 
-UsePedGroup(0);
+UsePedGroup(6);
 
-//AddStage(0);
-	//SetStageMessageIndex(12);
-	//AddObjective("getin");
-		//SetObjTargetVehicle("current");
-	//CloseObjective();
-//CloseStage();
-
-AddStage(2);
+AddStage();
+	RESET_TO_HERE();
+	SetMaxTraffic(3);
+	SetStageMessageIndex(11);
 	SetHUDIcon("kburger");
-	SetStageMessageIndex(01);
 	AddObjective("goto");
-		SetDestination("m2_krustyburg_1","carsphere");
-		AddNPC( "skinner", "m2_skinner_fatlol_1" );
-		AddStageVehicle("skinn_v","m2_skinner_car","NULL","EasyRace\AI_5th.con");
+		AddNPC("teen","m2_svt");
+		SetDestination("m2_krustb", "carsphere");
+		SetCollectibleEffect("wrench_collect");
 	CloseObjective();
 CloseStage();
 
-AddStage(3);
-	SetHUDIcon("skinner");
-	SetStageMessageIndex(21);
-	AddObjective("talkto");
-		AddNPC( "skinner", "m2_skinner_fatlol_1" );
-		SetTalkToTarget("skinner", 0, 0);
-	CloseObjective();
-CloseStage();
-
-AddStage(3);
-	SetHUDIcon("lisa");
+AddStage(0);
 	SetStageMessageIndex(02);
-	AddObjective("timer");
-		SetDurationTime(3);
+	SetHUDIcon( "svt" );
+	AddObjective("talkto");
+		AddNPC("teen","m2_svt");
+		SetTalkToTarget( "teen", 0, 0);
 	CloseObjective();
 CloseStage();
 
-AddStage(4);
-	SetHUDIcon("skinner");
-	SetStageMessageIndex(03);
-	AddObjective("timer");
-		SetDurationTime(3);
+AddStage(0);
+	AddObjective("dialogue");
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		SetConversationCam( 0, "pc_far" );
+		SetConversationCam( 1, "npc_far" );
+		SetConversationCam( 2, "pc_far" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_no" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_shake_hand_in_air" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_hands_in_air" );
+		SetCamBestSide("m2_bestside");
+		SetDialogueInfo("homer","teen","food",0);
 	CloseObjective();
 CloseStage();
 
-AddStage(5);
-	SetHUDIcon("lisa");
-	SetStageMessageIndex(04);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(5);
-	SetHUDIcon("skinner");
-	SetStageMessageIndex(05);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(5);
-	SetHUDIcon("skinner");
-	SetStageMessageIndex(06);
-	AddObjective("timer");
-		SetDurationTime(3);
-	CloseObjective();
-CloseStage();
-
-AddStage(6);
+AddStage();
 	SetStageMessageIndex(12);
 	SetPresentationBitmap( "art/frontend/dynaload/images/mis01_02.p3d" );
-	AddObjective("timer");
-		SetDurationTime(1);
+	AddObjective("getin");
+		SetObjTargetVehicle("current");
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
+//dialogue_hands_in_air
+//dialogue_hands_on_hips
+//dialogue_scratch_head
+//dialogue_shaking_fist
+//dialogue_thinking
+//dialogue_yes
+//dialogue_no
+//dialogue_cross_arms
+//dialogue_open_arm_hand_gesture
+//dialogue_shake_hand_in_air
+

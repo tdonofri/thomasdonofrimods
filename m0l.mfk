@@ -1,5 +1,9 @@
-LoadDisposableCar("art\cars\cArmor.p3d","cArmor","AI");
+LoadP3DFile("art\missions\level01\m0.p3d");
 
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\bartroom.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\vehicle\arm_v.p3d" );
-LoadP3DFile( "art\missions\level01\m0.p3d" );
+LoadP3DFile("art\missions\level01\is_comic.p3d");
+LoadP3DFile("art\missions\generic\kwk_door.p3d");
+
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\kwike.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\apu.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\comic.p3d" );
+

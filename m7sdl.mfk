@@ -1,5 +1,2 @@
-LoadP3DFile("art\missions\level04\mission7cam.p3d");
-
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\nelson.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\grampa.p3d" );
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\lisa.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\bart.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\tamacco.p3d" );
