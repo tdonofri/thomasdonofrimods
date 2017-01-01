@@ -1,39 +1,69 @@
 SelectMission("m1sd");
 
-SetMissionResetPlayerOutCar("level1_homer_start", "level1_carstart");
-SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;");
+SetMissionResetPlayerOutCar("m5_homer_start", "m5_carstart");
+SetDynaLoadData("l7z6.p3d;l7r6.p3d;");
+
 UsePedGroup(0);
 
-	AddStage(0);
-		SetMaxTraffic(3);
-		SetStageMessageIndex(01);
-		SetHUDIcon( "cbg" );
-		AddObjective("talkto","neither");
-			AddNPC("cbg", "m1_cbg");
-			SetTalkToTarget("cbg", 0, -0.4);
-		CloseObjective();
-	CloseStage();
+AddStage(0);
+	SetMaxTraffic(5);
+	SetStageMessageIndex(07);
+	SetHUDIcon("smithers");
+	AddObjective("talkto", "neither");
+		AddNPC("smithers", "m1_smith");
+		SetTalkToTarget("smithers", 0, -0.2);
+	CloseObjective();
+CloseStage();
 
-	AddStage(1);
-		AddObjective("dialogue");
-			SetPresentationBitmap( "art/frontend/dynaload/images/mis01_01.p3d" );
-			AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
-			AmbientAnimationRandomize( 0, 0 );
-			SetConversationCam( 0, "pc_near" );
-			SetConversationCam( 1, "pc_far" );
-			SetConversationCam( 2, "pc_near" );
-			SetConversationCam( 3, "pc_far" );
-			SetConversationCam( 4, "pc_near" );
-			AddAmbientNpcAnimation( "none" );
-			AddAmbientNpcAnimation( "none" );
-			AddAmbientPcAnimation( "none" );
-			AddAmbientPcAnimation( "dialogue_hands_in_air" );
-			SetDialogueInfo("cbg","homer","evil",0);
-		CloseObjective();
-	CloseStage();
+AddStage();
+	AllowMissionAbort( "false" );
+	AddObjective("dialogue");
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		AddAmbientNpcAnimation( "dialogue_open_arm_hand_gesture" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_no" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_hands_in_air" );
+		//AddAmbientPcAnimation( "dialogue_shaking_fist" );
+		SetConversationCam( 3, "pc_far" );
+		SetDialogueInfo("wiggum","smithers","police",0);
+	CloseObjective();
+CloseStage();
+
+AddStage(0);
+	SetMaxTraffic(5);
+	SetStageMessageIndex(01);
+	SetHUDIcon("burns");
+	AddObjective("talkto", "neither");
+		AddNPC("burns", "m5_burns_sd");
+		SetTalkToTarget("burns", 0, -0.2);
+	CloseObjective();
+CloseStage();
+
+AddStage(1);
+	AddObjective("dialogue");
+		SetPresentationBitmap( "art/frontend/dynaload/images/mis01_01.p3d" );
+		SetCamBestSide( "m5_bestside" );
+		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
+		AmbientAnimationRandomize( 0, 0 );
+		AddAmbientNpcAnimation( "dialogue_open_arm_hand_gesture" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_no" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_hands_in_air" );
+		//AddAmbientPcAnimation( "dialogue_shaking_fist" );
+		SetConversationCam( 3, "pc_far" );
+		SetDialogueInfo("wiggum","burns","barrel",0);
+		SetDialoguePositions("m5_homertalk","m5_burns_sd","m5_carstart");
+	CloseObjective();
+CloseStage();
 
 CloseMission();
-
 
 //dialogue_hands_in_air
 //dialogue_hands_on_hips

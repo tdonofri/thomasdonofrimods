@@ -1,5 +1,10 @@
-LoadP3DFile("art\missions\level01\m1.p3d");
-LoadP3DFile("art\missions\level01\pills.p3d");
-
-LoadP3DFile("art\frontend\dynaload\images\msnicons\location\kwike.p3d");
-LoadP3DFile("art\frontend\dynaload\images\msnicons\object\pills.p3d");
+LoadP3DFile( "art\missions\level01\m1.p3d" );
+LoadP3DFile( "art\missions\level01\m5.p3d" );
+LoadP3DFile( "art\missions\level01\medkit.p3d" );
+LoadP3DFile( "art\missions\level01\sockg.p3d" );
+LoadP3DFile( "art\missions\level01\record.p3d" );
+LoadP3DFile( "art\missions\level01\map.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\object\blood.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\bartroom.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\kwike.p3d" );
+LoadDisposableCar( "art\cars\ambul.p3d","ambul","AI" );

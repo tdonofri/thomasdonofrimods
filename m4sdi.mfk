@@ -1,58 +1,39 @@
 SelectMission("m4sd");
 
-SetMissionResetPlayerOutCar("m4_marge_start","m4_carstart");
-SetDynaLoadData("l4z1.p3d;l4z7.p3d;l4r7.p3d;");
+SetMissionResetPlayerOutCar("m4_wiggum_start", "m4_carstart");
+SetDynaLoadData("l7z3.p3d;l7r2.p3d;l7r3.p3d;");
 
-UsePedGroup(6);
+UsePedGroup(3);
 
-AddStage(0);
-	SetMaxTraffic(3);
-	SetStageMessageIndex(240);
-	SetHUDIcon("cemetery");
-	AddObjective("goto");
-		AddNPC("krusty", "m4_moleman_sd");
-		SetDestination("m5_graveyard", "carsphere");
-		SetCollectibleEffect("wrench_collect");
-	CloseObjective();
-CloseStage();	
-
-AddStage(25);
-	RESET_TO_HERE();
+AddStage(1);
 	SetStageMessageIndex(01);
-	SetHUDIcon("krusty");
-	AddObjective("talkto");
-		AddNPC("krusty", "m4_moleman_sd");
-		AddObjectiveNPCWaypoint( "krusty", "m4_moleman_walk1" );
-		AddObjectiveNPCWaypoint( "krusty", "m4_moleman_walk2" );
-		AddObjectiveNPCWaypoint( "krusty", "m4_moleman_sd" );
-		SetTalkToTarget("krusty", 0, -0.5);
+	SetHUDIcon( "bart" );
+	AddObjective("talkto", "neither");
+		AddStageVehicle("bart_v","m4_bart_car_loc","NULL","HardRace\AI_2nd.con");
+		AddNPC("bart", "m4_bart_loc");
+		SetTalkToTarget("bart", 0, 0);
 	CloseObjective();
 CloseStage();
 
-AddStage(1);
+AddStage(0);
 	AddObjective("dialogue");
 		SetPresentationBitmap( "art/frontend/dynaload/images/mis01_04.p3d" );
+		SetCamBestSide( "m4_bstside" );
 		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
 		AmbientAnimationRandomize( 0, 0 );
-		SetConversationCam( 0, "npc_near" );
-		SetConversationCam( 1, "pc_far" );
-		SetConversationCam( 2, "npc_near" );
-		SetConversationCam( 3, "pc_far" );
 		AddAmbientNpcAnimation( "none" );
-		AddAmbientNpcAnimation( "dialogue_no" );
+		AddAmbientNpcAnimation( "dialogue_thinking" );
 		AddAmbientNpcAnimation( "none" );
-		AddAmbientNpcAnimation( "dialogue_yes" );
-		AddAmbientPcAnimation( "dialogue_hands_on_hips" );
+		AddAmbientPcAnimation( "dialogue_hands_in_air" );
 		AddAmbientPcAnimation( "none" );
-		AddAmbientPcAnimation( "dialogue_scratch_head" );
-		AddAmbientPcAnimation( "none" );
-		SetCamBestSide("m4_bestside");
-		SetDialogueInfo("homer","krusty","sex",0);
-		SetDialoguePositions("m4_marge_talk","m4_moleman_sd","m4_carstart");
+		AddAmbientPcAnimation( "dialogue_yes" );
+		SetDialogueInfo("wiggum","bart","forced",0);
+		SetDialoguePositions("m4_wiggu_side","m4_bart_loc","m4_carstart");
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
 
 //dialogue_hands_in_air
 //dialogue_hands_on_hips

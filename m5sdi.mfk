@@ -1,24 +1,24 @@
 SelectMission("m5sd");
 
-SetMissionResetPlayerOutCar("m5_marge_start","m5_carstart");
-SetDynaLoadData("l4z2.p3d;l4r1.p3d;l4r2.p3d;");
+SetMissionResetPlayerOutCar("m4_wig_talk2", "m4_talk_car_loc");
+SetDynaLoadData("l7z2.p3d;l7r2.p3d;l7r1.p3d;");
 
-UsePedGroup(1);
+UsePedGroup(5);
 
-AddStage(25);
-	SetMaxTraffic(3);
-	SetHUDIcon("sjail");
-	SetStageMessageIndex(05);
-	AddObjective("talkto");
-		AddStageVehicle("snake_v","m5_carstart","NULL","HardRace\AI_2nd.con");
-		AddNPC("snake", "m5_grampa_sd");
-		SetTalkToTarget("snake", 0, 0); 
+AddStage(1);
+RESET_TO_HERE();
+	SetStageMessageIndex(02);
+	SetHUDIcon( "grampa" );
+	AddObjective("talkto", "neither");
+		AddNPC("grandpa", "m4_gramp_loc");
+		SetTalkToTarget("grandpa", 0, 0);
 	CloseObjective();
 CloseStage();
 
-AddStage(1);
+AddStage(0);
 	AddObjective("dialogue");
 		SetPresentationBitmap( "art/frontend/dynaload/images/mis01_05.p3d" );
+		SetCamBestSide( "m4_bestside_5" );
 		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
 		AmbientAnimationRandomize( 0, 0 );
 		SetConversationCam( 0, "npc_far" );
@@ -26,16 +26,25 @@ AddStage(1);
 		SetConversationCam( 2, "npc_far" );
 		SetConversationCam( 3, "pc_far" );
 		SetConversationCam( 4, "npc_far" );
+		SetConversationCam( 5, "pc_far" );
+		SetConversationCam( 6, "npc_far" );
+	
+		AddAmbientNpcAnimation( "dialogue_shaking_fist" );
 		AddAmbientNpcAnimation( "none" );
-		AddAmbientNpcAnimation( "dialogue_no" );
+		AddAmbientNpcAnimation( "dialogue_thinking" );
 		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_yes" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_yes" );
+		AddAmbientPcAnimation( "none" );
 		AddAmbientPcAnimation( "dialogue_shake_hand_in_air" );
 		AddAmbientPcAnimation( "none" );
-		AddAmbientPcAnimation( "dialogue_scratch_head" );
-		SetConversationCam( 3, "pc_far" );
-		SetCamBestSide("m5_bestside");
-		SetDialogueInfo("homer","snake","carjack",0);
-		SetDialoguePositions("m5_marge_start","m5_grampa_sd","m5_carstart");
+		AddAmbientPcAnimation( "dialogue_yes" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_no" );
+		AddAmbientPcAnimation( "none" );
+		SetDialogueInfo("wiggum","grandpa","last",0);
+		SetDialoguePositions("m4_wig_talk2","m4_gramp_talk","m4_talk_car_loc");
 	CloseObjective();
 CloseStage();
 

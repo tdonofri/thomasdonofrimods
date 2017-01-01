@@ -1,3 +1,4 @@
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\grampa.p3d" );
-
-LoadDisposableCar("art\cars\gramp_v.p3d","gramp_v","AI");
+LoadP3DFile( "art\missions\level01\m2.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\homer.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\lenny.p3d" );
+LoadDisposableCar("art\cars\homer_v.p3d","homer_v","AI");

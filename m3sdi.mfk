@@ -1,40 +1,49 @@
 SelectMission("m3sd");
 
-SetMissionResetPlayerOutCar("m3_start","m3_carstarta");
-SetDynaLoadData("l4z4.p3d;l4z6.p3d;l4r6.p3d;");
+SetMissionResetPlayerOutCar("m2_wiggum", "level7_carstart");
+SetDynaLoadData("l7z1.p3d;l7r1.p3d;l7r7.p3d;");
 
-UsePedGroup(1);
+UsePedGroup(5);
 
-AddStage();
-	SetMaxTraffic(3);
-	SetStageMessageIndex(25);
-	SetHUDIcon( "grampa" );
+AddStage(5);
+	SetMaxTraffic(5);
+	SetStageMessageIndex(01);
+	SetHUDIcon( "homer" );
 	AddObjective("talkto");
-		AddStageVehicle("gramp_v","m3_gramp_v","NULL","EasyRace\AI_5th.con");
-		AddNPC("grandpa", "m3_grp");
-		SetTalkToTarget("grandpa", 0, 0); 
+		AddNPC("homer", "m2_homer");
+		SetTalkToTarget("homer", 0, 0);
 	CloseObjective();
 CloseStage();
 
 AddStage();
 	AddObjective("dialogue");
+		SetPresentationBitmap( "art/frontend/dynaload/images/mis01_03.p3d" );
 		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
 		AmbientAnimationRandomize( 0, 0 );
-		SetConversationCam( 0, "pc_far" );
-		SetConversationCam( 1, "npc_far" );
-		SetConversationCam( 2, "pc_far" );
-		SetConversationCam( 3, "npc_far" );
+		AddAmbientNpcAnimation( "dialogue_shake_hand_in_air" );
 		AddAmbientNpcAnimation( "none" );
-		AddAmbientNpcAnimation( "dialogue_no" );
 		AddAmbientNpcAnimation( "none" );
-		AddAmbientPcAnimation( "dialogue_shake_hand_in_air" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_scratch_head" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "none" );
 		AddAmbientPcAnimation( "none" );
-		AddAmbientPcAnimation( "dialogue_hands_in_air" );
-		SetDialogueInfo("homer","grandpa","ride",0);
+		AddAmbientPcAnimation( "dialogue_thinking" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_yes" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_no" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_shaking_fist" );
+		SetCamBestSide( "m2_bestside_1" );
+		SetDialogueInfo("wiggum","homer","clever",0);
+		SetDialoguePositions("m2_wiggum","m2_homer","level7_carstart");
 	CloseObjective();
 CloseStage();
 
 CloseMission();
+
 
 //dialogue_hands_in_air
 //dialogue_hands_on_hips

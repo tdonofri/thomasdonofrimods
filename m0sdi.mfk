@@ -1,55 +1,42 @@
 SelectMission("m0sd");
 
-SetMissionResetPlayerOutCar("level1_homer_start", "level1_carstart");
-SetDynaLoadData("l4z1.p3d;l4r1.p3d;l4r7.p3d;");
+SetMissionResetPlayerOutCar("l1_wiggum_start", "l1_wiggu_v");
+SetDynaLoadData("l7z1.p3d;l7r1.p3d;l7r7.p3d;");
 
-UsePedGroup( 0 );
+UsePedGroup(0);
 
 AddStage(0);
-	SetMaxTraffic(2);
-	SetHUDIcon("marage");	
-	SetStageMessageIndex(00);
-	AddObjective("talkto","neither");
-		AddNPC("marge", "m0_marage");
-		SetTalkToTarget("marge", 0, 0.2);
+	SetStageMessageIndex(03);
+	SetHUDIcon("barne");
+	SetMaxTraffic(3);
+	AddObjective("talkto");
+		AddNPC("barney","level7_carstart");
+		SetTalkToTarget("barney", 0, 0);
 	CloseObjective();
 CloseStage();
 
-AddStage(1);
+AddStage();
+	SetStageMessageIndex(03);
+	SetHUDIcon("barne");
 	AddObjective("dialogue");
 		SetPresentationBitmap( "art/frontend/dynaload/images/mis01_00.p3d" );
 		AmbientAnimationRandomize( 1, 0 );      // ( pc=0, npc=1) (nonrandom=0, random=1)
 		AmbientAnimationRandomize( 0, 0 );
-		SetConversationCam( 0, "npc_far" );
-		SetConversationCam( 1, "npc_near" );
-		SetConversationCam( 2, "npc_near" );
-		SetConversationCam( 3, "npc_far" );
-		AddAmbientNpcAnimation( "dialogue_open_arm_hand_gesture" );
-		AddAmbientNpcAnimation( "dialogue_shaking_fist" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_hands_in_air" );
+		AddAmbientNpcAnimation( "none" );
 		AddAmbientNpcAnimation( "dialogue_no" );
-		AddAmbientNpcAnimation( "dialogue_cross_arms" );
+		AddAmbientNpcAnimation( "none" );
+		AddAmbientNpcAnimation( "dialogue_yes" );
+		AddAmbientPcAnimation( "dialogue_shake_hand_in_air" );
+		AddAmbientPcAnimation( "none" );
 		AddAmbientPcAnimation( "dialogue_thinking" );
-		AddAmbientPcAnimation( "dialogue_scratch_head" );
-		AddAmbientPcAnimation( "dialogue_hands_in_air" );
-		AddAmbientPcAnimation( "dialogue_no" );
-		//SetConversationCamNpcName("npc_far");
-		//SetConversationCamPcName("pc_far");
-		SetDialogueInfo("homer","marge","what",0);
-		SetCamBestSide("m0_hom1");
-		SetDialoguePositions("m0_hom","m0_marage");
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "none" );
+		AddAmbientPcAnimation( "dialogue_yes" );
+		SetDialogueInfo("wiggum","barney","skid",0);
 	CloseObjective();
 CloseStage();
 
 CloseMission();
-
-
-//dialogue_hands_in_air
-//dialogue_hands_on_hips
-//dialogue_scratch_head
-//dialogue_shaking_fist
-//dialogue_thinking
-//dialogue_yes
-//dialogue_cross_arms
-//dialogue_cross_arms
-//dialogue_open_arm_hand_gesture
-//dialogue_shake_hand_in_air

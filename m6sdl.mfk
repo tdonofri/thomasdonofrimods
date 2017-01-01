@@ -1,4 +1,5 @@
-LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\burns.p3d" );
-LoadP3DFile( "art\missions\level01\m6.p3d" );
+LoadDisposableCar("art\cars\moe_v.p3d","moe_v","AI");
+LoadP3DFile("art\missions\level01\m6.p3d");
 
-LoadP3DFile("art\frontend\dynaload\images\msnicons\location\wstation.p3d");
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\char\moe.p3d" );
+LoadP3DFile( "art\frontend\dynaload\images\msnicons\location\playgrou.p3d" );
